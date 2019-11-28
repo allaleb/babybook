@@ -1,23 +1,91 @@
 body {
-    background-color: #bbb;
-    margin: 0;
+  background-color: #bbb;
+  margin: 0;
 }
 
 .overlay {
-    z-index:50;
-    position: fixed;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    background-color:rgba(0,0,0,0.5);
+  z-index: 50;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .popup {
-    z-index:100;
-    position: fixed;
-    top:200px;
-    left:200px;
-    right:200px;
-    background-color:white
+  z-index: 100;
+  position: fixed;
+  top: 200px;
+  left: 200px;
+  right: 200px;
+  background-color: white;
+}
+
+.navbar-page {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #f09595;
+  height: 50px;
+}
+
+.store-mini {
+  position: absolute;
+  font-family: "Fredoka One", cursive;
+  font-size: 23px;
+  padding: 8px;
+  left: 2px;
+}
+
+.link-store {
+  text-decoration: none;
+  color: black;
+  font-family: "Fredoka One", cursive;
+  font-size: 23px;
+  padding: 8px;
+}
+
+.home-wrapper {
+  justify-content: center;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  margin: 8px;
+  padding: 8px;
+}
+
+.navbar-home {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #f09595;
+  height: 50px;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #f09595;
+  height: 50px;
+}
+
+.baby {
+  position: absolute;
+  font-family: "Fredoka One", cursive;
+  font-size: 23px;
+  padding: 8px;
+  left: 2px;
+}
+
+link {
+  text-decoration: none;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  margin: 8px;
+  padding: 8px;
 }
