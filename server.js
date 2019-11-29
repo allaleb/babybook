@@ -154,18 +154,26 @@ app.post("/deleteOne", upload.none(), (req, res) => {
 
 app.post("/profile", upload.single("img"), (req, res) => {
   console.log("request to upload a profile");
+  let sid = req.cookies.sid;
   let name = req.body.name;
+  let username = req.body.username;
   let location = req.body.location;
   let interests = req.body.interests;
+  let likes = req.body.likes;
   let file = req.file;
   let frontendPath = null;
+  console.log("cookie", sid);
   if (file !== undefined) frontendPath = "/uploads/" + file.filename;
-  dbo.collection("users").insertOne(
+  dbo.collection("users").update(
+    { username: username },
     {
-      name: name,
-      frontendPath: frontendPath,
-      location: location,
-      interests: interests
+      $set: {
+        nickName: name,
+        profilePic: frontendPath,
+        location: location,
+        interests: interests,
+        likes: likes
+      }
     },
     (error, insertedUser) => {
       if (error) {
@@ -178,18 +186,25 @@ app.post("/profile", upload.single("img"), (req, res) => {
   );
 });
 
-// app.post("/update"),
-//   upload.none(),
-//   (req, res) => {
-//     console.log("request to /update");
-//     let id = req.body.id.toString();
-//     let desc = req.body.description;
-//     console.log("send from client", desc, id);
-//     dbo
-//       .collection("posts")
-//       .updateOne({ _id: ObjectID(id) }, { $set: { description: desc } });
-//     res.send(JSON.stringify({ success: true }));
-//   };
+// app.post("/likes", upload.none(), (req, res) => {
+//   console.log("request to like a post");
+//   let likes = req.body.likes;
+//   res.send(JSON.stringify({ success: true }));
+// });
+
+app.post("/getProfile", upload.none(), (req, res) => {
+  console.log("request to upload a profile pic");
+  let name = req.body.name;
+  dbo.collection("users").findOne({ username: name }, (err, user) => {
+    if (err) {
+      console.log("error!");
+      res.send(JSON.stringify({ success: false }));
+      return;
+    }
+    console.log("user", user);
+    res.send(JSON.stringify({ success: true, user: user }));
+  });
+});
 
 app.all("/*", (req, res, next) => {
   res.sendFile(__dirname + "/build/index.html");

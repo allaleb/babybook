@@ -32,8 +32,13 @@ class UnconnectedHeader extends Component {
             LOG OUT
           </Link>
           <Link to="/profile" className="link">
-            Profile
+            PROFILE
           </Link>
+          <div className="link">
+            <Link to="/login" className="link">
+              BACK
+            </Link>
+          </div>
         </div>
       );
   };

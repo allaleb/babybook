@@ -42,9 +42,9 @@ class UnconnectedPosts extends Component {
           {/* <Link className="link-store" to="/profile">
             Profile
           </Link> */}
-          <Link className="link-store" to="/">
+          {/* <Link className="link-store" to="/">
             Home
-          </Link>
+          </Link> */}
           <h1>Welcome to your baby book!</h1>
           <NewPost />
           {/* loop through the existing posts */}

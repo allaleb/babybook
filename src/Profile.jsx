@@ -37,6 +37,7 @@ class UnconnectedProfile extends Component {
     event.preventDefault();
     let data = new FormData();
     data.append("name", this.state.name);
+    data.append("username", this.props.username);
     data.append("location", this.state.location);
     data.append("interests", this.state.interests);
     // data.append("useraname", this.props.username);
