@@ -47,7 +47,7 @@ class UnconnectedHomepage extends Component {
     if (this.props.loggedIn) {
       return <Redirect to="/posts" />;
     } else {
-      return <div>Hello!</div>;
+      return <div>Hi there!!</div>;
     }
   };
 }

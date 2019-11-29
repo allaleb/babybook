@@ -89,3 +89,77 @@ link {
   margin: 8px;
   padding: 8px;
 }
+
+/* .row1 {
+  color: #fff;
+  font-size: 11px;
+  width: 164px;
+  cursor: pointer;
+} */
+
+.formbox {
+  display: inline-block;
+  width: 399px;
+}
+
+.inputbody {
+  display: inline-block;
+  font-size: 18px;
+  padding: 8px 10px;
+  border: 1px solid #bdc7d8;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.in1 {
+  width: 172px;
+}
+
+.in2 {
+  width: 185px;
+}
+
+.bolder {
+  font-family: "Open Sans", sans-serif;
+  text-rendering: optimizelegibility;
+  color: #333;
+}
+.free {
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  margin-left: 50px;
+}
+
+.buttonSignUp {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-left: 50px;
+  background: #fa697c;
+  border-radius: 30px;
+  color: white;
+  padding: 15px;
+  border: none;
+}
+
+.already {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 10px;
+  margin-left: 10px;
+}

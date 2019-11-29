@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import Likes from "./Likes.jsx";
 
 class UnconnectedPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
       userProfile: {}
     };
   }
@@ -46,13 +46,6 @@ class UnconnectedPost extends Component {
   editPostOnChange = event =>
     this.setState({ description: event.target.value });
 
-  incrementMe = () => {
-    let newCount = this.state.count + 1;
-    this.setState({
-      count: newCount
-    });
-  };
-
   isThereProfilePic = () => {
     if (this.state.userProfile.profilePic !== undefined) {
       return true;
@@ -67,7 +60,7 @@ class UnconnectedPost extends Component {
     //liked (postid+userId)
     //post: if it exists in the collection. if it doesnt exist, you likeit
     return (
-      <div>
+      <div style={{ border: "3px solid black", margin: "10px" }}>
         <button onClick={this.deleteOne}>Delete this post </button>
         <button onClick={this.delete}>Delete all posts </button>
         <input type="text" onChange={this.editPostOnChange} />
@@ -86,9 +79,7 @@ class UnconnectedPost extends Component {
         ) : (
           ""
         )}
-        <button onClick={this.incrementMe}>
-          ❤️ Likes❤️ {this.state.count}
-        </button>
+        <Likes post={this.props.post} />
       </div>
     );
   };
@@ -97,7 +88,8 @@ class UnconnectedPost extends Component {
 let mapStateToProps = state => {
   return {
     description: state.description,
-    file: state.file
+    file: state.file,
+    username: state.username
   };
 };
 

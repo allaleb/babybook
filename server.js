@@ -125,7 +125,8 @@ app.post("/new-post", upload.single("file"), (req, res) => {
     description: description,
     frontendPath: frontendPath,
     username: req.body.username,
-    type: type
+    type: type,
+    likes: []
   });
   res.send(JSON.stringify({ success: true }));
 });
@@ -186,11 +187,33 @@ app.post("/profile", upload.single("img"), (req, res) => {
   );
 });
 
-// app.post("/likes", upload.none(), (req, res) => {
-//   console.log("request to like a post");
-//   let likes = req.body.likes;
-//   res.send(JSON.stringify({ success: true }));
-// });
+app.post("/likes", upload.none(), (req, res) => {
+  console.log("POST to /likes:", req.body);
+  let postId = req.body.postId;
+  let username = req.body.username;
+  // dbo.collection("posts").findOne({ _id: ObjectID(postId) }, (error, post) => {
+  //   if (error || post === null) {
+  //     console.log("ERROR or null post");
+  //     return res.json({ success: false });
+  // }
+  // console.log("POST:", post);
+  // let likes = post.likes || [];
+  // likes.push(username);
+  dbo
+    .collection("posts")
+    .updateOne(
+      { _id: ObjectID(postId) },
+      { $push: { likes: username } },
+      (error, updatedPost) => {
+        if (error) {
+          console.log("ERROR updating post");
+          return res.json({ success: false });
+        }
+        console.log("UPDATED POST:", updatedPost);
+        res.json({ success: true });
+      }
+    );
+});
 
 app.post("/getProfile", upload.none(), (req, res) => {
   console.log("request to upload a profile pic");

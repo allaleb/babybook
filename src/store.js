@@ -3,7 +3,8 @@ import { createStore } from "redux";
 let initialState = {
   loggedIn: false,
   username: "",
-  posts: []
+  posts: [],
+  userId:""
 };
 
 let reducer = (state, action) => {

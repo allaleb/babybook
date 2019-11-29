@@ -47,9 +47,8 @@ class UnconnectedPosts extends Component {
           </Link> */}
           <h1>Welcome to your baby book!</h1>
           <NewPost />
-          {/* loop through the existing posts */}
           {this.props.posts.map(post => {
-            return <Post post={post} />;
+            return <Post key={post._id} post={post} />;
           })}
         </div>
       );

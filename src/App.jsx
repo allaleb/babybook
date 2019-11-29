@@ -9,7 +9,7 @@ import NewPost from "./NewPost.jsx";
 import Post from "./Post.jsx";
 import Posts from "./Posts.jsx";
 import Header from "./Header.jsx";
-// import Likes from "./Likes.jsx";
+import Likes from "./Likes.jsx";
 
 class UnconnectedApp extends Component {
   componentDidMount = async () => {
@@ -34,7 +34,6 @@ class UnconnectedApp extends Component {
         <Route exact={true} path="/login" component={Login} />
         <Route exact={true} path="/new-post" component={NewPost} />
         <Route exact={true} path="/posts" component={Posts} />
-        {/* <Route exact={true} path="/likes" component={Likes} /> */}
         <Route
           exact={true}
           path="/posts/:postId"

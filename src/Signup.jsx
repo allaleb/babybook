@@ -51,26 +51,38 @@ class UnconnectedSignup extends Component {
               </Link> */}
             </div>
           </div>
-          <h1 className="signup-name">Signup</h1>
-          <form className="signup-form" onSubmit={this.submitHandler}>
-            Username
-            <input
-              type="text"
-              value={this.state.username}
-              onChange={this.usernameHandler}
-            ></input>
-            Password
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.passwordHandler}
-            ></input>
-            <input type="submit" value="Sign up"></input>
-          </form>
+          <div className="box">
+            <div className="formbox">
+              <h1 className="signup bolder">Signup</h1>
+              <div className="free bolder">It's free and always will be</div>
+              <form className="signup-form" onSubmit={this.submitHandler}>
+                <input
+                  type="text"
+                  className="inputbody in1"
+                  value={this.state.username}
+                  placeholder="Username"
+                  onChange={this.usernameHandler}
+                ></input>
+                <input
+                  type="password"
+                  className="inputbody in2"
+                  value={this.state.password}
+                  placeholder="Password"
+                  onChange={this.passwordHandler}
+                ></input>
+                <input
+                  type="submit"
+                  className="buttonSignUp"
+                  value="Sign up"
+                ></input>
+              </form>
+            </div>
+          </div>
           <form className="form">
             <div className="link-login">
               <Link className="link" to="/login">
-                Already have an account? Click here to log in
+                <div className="account">Already have an account? </div>
+                <div className="account">Click here to log in.</div>
               </Link>
             </div>
           </form>
