@@ -86,8 +86,6 @@ class UnconnectedProfile extends Component {
             onChange={this.locationChangeHandler}
             placeholder="Your location"
           ></input>
-          <div className="space"></div>
-          <input type="file" onChange={this.fileChangeHandler} />
           <div></div>
           <input
             className="test"
@@ -95,6 +93,10 @@ class UnconnectedProfile extends Component {
             onChange={this.bioChangeHandler}
             placeholder="Your bio"
           ></input>
+          <div></div>
+          <input type="file" onChange={this.fileChangeHandler} />
+          <div></div>
+
           <input type="submit" value="Submit"></input>
 
           <div></div>

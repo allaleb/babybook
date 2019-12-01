@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import Likes from "./Likes.jsx";
+import Comments from "./Comments.jsx";
 
 class UnconnectedPost extends Component {
   constructor(props) {
@@ -81,6 +82,7 @@ class UnconnectedPost extends Component {
           ""
         )}
         <Likes post={this.props.post} />
+        <Comments post={this.props.post} />
       </div>
     );
   };

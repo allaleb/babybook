@@ -1,34 +1,60 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import Post from "./Post.jsx";
+
 class UnconnectedComments extends Component {
-  render = () => {
-    if (!this.props.loggedIn) {
-      return (
-        <div className="nav">
-          <div className="baby">Welcome to Baby Book!</div>
-          <Link to="/signup" className="link">
-            SIGN UP
-          </Link>
-          <div></div>
-          <Link to="/login">LOG IN</Link>
-        </div>
-      );
-    } else
-      return (
-        <div className="nav">
-          <div className="baby">Welcome to Baby Book!</div>
-          <Link to="/logout" className="link">
-            LOGOUT
-          </Link>
-        </div>
-      );
+  state = {
+    comment: ""
   };
+  commenthangeHandler = event => {
+    this.setState({ comment: event.target.value });
+  };
+
+  submitHandler = async event => {
+    console.log("new comment submitted");
+    event.preventDefault();
+    let newComments = this.props.post.comments.slice();
+    newComments.push(this.props.username + ":" + this.state.comment);
+    let data = new FormData();
+    data.append("newComments", JSON.stringify(newComments));
+    data.append("id", this.props.post._id);
+    console.log(newComments);
+    let response = await fetch("/comments", { method: "POST", body: data });
+    let body = await response.text();
+    let postUpdate = JSON.parse(body);
+
+    if (postUpdate.success === true) {
+      window.alert("Your comment was submitted!");
+    }
+  };
+
+  render() {
+    console.log(this.props.post);
+    return (
+      <div>
+        <div>
+          {this.props.post.comments.map(comment => {
+            return <div>{comment}</div>;
+          })}
+        </div>
+        <form className="forms" onSubmit={this.submitHandler}>
+          <input
+            className="test"
+            type="text"
+            onChange={this.commenthangeHandler}
+            placeholder="Enter your comments here"
+          ></input>
+          <input type="submit" value="Submit"></input>
+        </form>
+      </div>
+    );
+  }
 }
 
-let mapStateToProps = state => {
+const mapStateToProps = state => {
   return {
-    loggedIn: state.loggedIn
+    comment: state.comment,
+    username: state.username
   };
 };
 

@@ -128,8 +128,24 @@ app.post("/new-post", upload.single("file"), (req, res) => {
     frontendPath: frontendPath,
     username: req.body.username,
     type: type,
-    likes: []
+    likes: [],
+    comments: []
   });
+  res.send(JSON.stringify({ success: true }));
+});
+
+app.post("/comments", upload.none(), (req, res) => {
+  let newComments = JSON.parse(req.body.newComments);
+  let postId = req.body.id;
+
+  dbo.collection("posts").updateOne(
+    { _id: ObjectID(postId) },
+    {
+      $set: {
+        comments: newComments
+      }
+    }
+  );
   res.send(JSON.stringify({ success: true }));
 });
 

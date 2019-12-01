@@ -11,6 +11,7 @@ import Posts from "./Posts.jsx";
 import Header from "./Header.jsx";
 import Likes from "./Likes.jsx";
 import Users from "./Users.jsx";
+import Comments from "./Comments.jsx";
 
 class UnconnectedApp extends Component {
   componentDidMount = async () => {
@@ -26,10 +27,6 @@ class UnconnectedApp extends Component {
   };
 
   render = () => {
-    //   let renderUser = routerData => {
-    //     let userId = routerData.match.params.sid;
-    //     return <User user={user} />;
-    //   };
     return (
       <BrowserRouter>
         <Header />
@@ -46,7 +43,6 @@ class UnconnectedApp extends Component {
           )}
         />
 
-        {/* // <Route exact={true} path="/users/:sid" render={renderUser} /> */}
         <Route
           exact={true}
           path="/posts/:postId"
