@@ -14,9 +14,9 @@ class UnconnectedHeader extends Component {
           <div className="nav">
             <div className="baby">Welcome to Baby Book!</div>
             <div></div>
-            <Link to="/signup" className="link">
+            {/* <Link to="/signup" className="link">
               SIGN UP
-            </Link>
+            </Link> */}
             {"   "}
             <Link to="/login" className="link">
               LOG IN
@@ -28,7 +28,7 @@ class UnconnectedHeader extends Component {
       return (
         <div className="nav">
           <div className="baby">Welcome to Baby Book!</div>
-          <Link to="/logout" className="link" onClick={this.logOutHandler}>
+          <Link to="/" className="link" onClick={this.logOutHandler}>
             LOG OUT
           </Link>
           <Link to="/profile" className="link">

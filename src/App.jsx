@@ -10,13 +10,13 @@ import Post from "./Post.jsx";
 import Posts from "./Posts.jsx";
 import Header from "./Header.jsx";
 import Likes from "./Likes.jsx";
+import Users from "./Users.jsx";
 
 class UnconnectedApp extends Component {
   componentDidMount = async () => {
     let res = await fetch("/checkForUser");
     let body = await res.text();
     let loggedIn = JSON.parse(body);
-    console.log("parsed body", loggedIn.success);
     if (loggedIn.success) {
       this.props.dispatch({
         type: "login-success",
@@ -26,6 +26,10 @@ class UnconnectedApp extends Component {
   };
 
   render = () => {
+    //   let renderUser = routerData => {
+    //     let userId = routerData.match.params.sid;
+    //     return <User user={user} />;
+    //   };
     return (
       <BrowserRouter>
         <Header />
@@ -34,6 +38,15 @@ class UnconnectedApp extends Component {
         <Route exact={true} path="/login" component={Login} />
         <Route exact={true} path="/new-post" component={NewPost} />
         <Route exact={true} path="/posts" component={Posts} />
+        <Route
+          exact={true}
+          path="/users/:username"
+          render={routerData => (
+            <Users username={routerData.match.params.username} />
+          )}
+        />
+
+        {/* // <Route exact={true} path="/users/:sid" render={renderUser} /> */}
         <Route
           exact={true}
           path="/posts/:postId"

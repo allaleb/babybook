@@ -53,7 +53,8 @@ body {
 .link {
   text-decoration: none;
   color: black;
-  font-family: "Roboto", sans-serif;
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
   margin: 8px;
   padding: 8px;
 }
@@ -76,7 +77,7 @@ body {
 
 .baby {
   position: absolute;
-  font-family: "Fredoka One", cursive;
+  font-family: "Petit Formal Script", cursive;
   font-size: 23px;
   padding: 8px;
   left: 2px;
@@ -105,9 +106,9 @@ link {
 .inputbody {
   display: inline-block;
   font-size: 18px;
-  padding: 8px 10px;
-  border: 1px solid #bdc7d8;
-  color: #333;
+  padding: 10px;
+  border: 1px solid;
+  background-color: #fafafa;
   margin-bottom: 10px;
 }
 
@@ -131,7 +132,7 @@ link {
 
 .box {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   margin-top: 80px;
   margin-left: 50px;
 }
@@ -153,13 +154,40 @@ link {
   justify-content: center;
   align-content: center;
   margin-top: 10px;
-  margin-left: 10px;
+  /* margin-left: 5px; */
 }
 
 .account {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-top: 10px;
-  margin-left: 10px;
+}
+
+/* .profilePic {
+  float: left;
+  width: calc(33.333% - 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+} */
+
+/* .phone {
+  display: grid;
+  justify-content: flex-start;
+} */
+
+.signup {
+  font-size: 25px;
+  font-family: "Inconsolata", monospace;
+}
+
+.post {
+  font-size: 25px;
+  font-family: "Inconsolata", monospace;
+}
+
+.posted {
+  font-size: 20px;
+  font-family: "Inconsolata", monospace;
 }

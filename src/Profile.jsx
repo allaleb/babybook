@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import NewPost from "./NewPost.jsx";
+import Users from "./Users.jsx";
 
 class UnconnectedProfile extends Component {
   constructor() {
@@ -11,7 +12,8 @@ class UnconnectedProfile extends Component {
       interests: "",
       location: "",
       file: "",
-      username: ""
+      username: "",
+      bio: ""
     };
   }
 
@@ -32,6 +34,11 @@ class UnconnectedProfile extends Component {
     this.setState({ file: event.target.files[0] });
   };
 
+  bioChangeHandler = event => {
+    console.log("bio");
+    this.setState({ bio: event.target.value });
+  };
+
   submitHandler = async event => {
     console.log("new item submitted");
     event.preventDefault();
@@ -40,6 +47,7 @@ class UnconnectedProfile extends Component {
     data.append("username", this.props.username);
     data.append("location", this.state.location);
     data.append("interests", this.state.interests);
+    data.append("bio", this.state.bio);
     // data.append("useraname", this.props.username);
     data.append("img", this.state.file);
     let response = await fetch("/profile", { method: "POST", body: data });
@@ -81,8 +89,17 @@ class UnconnectedProfile extends Component {
           <div className="space"></div>
           <input type="file" onChange={this.fileChangeHandler} />
           <div></div>
+          <input
+            className="test"
+            type="text"
+            onChange={this.bioChangeHandler}
+            placeholder="Your bio"
+          ></input>
           <input type="submit" value="Submit"></input>
+
+          <div></div>
         </form>
+        {/* <Users post={this.props.post} /> */}
       </div>
     );
   };

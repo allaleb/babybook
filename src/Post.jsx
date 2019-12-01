@@ -65,12 +65,13 @@ class UnconnectedPost extends Component {
         <button onClick={this.delete}>Delete all posts </button>
         <input type="text" onChange={this.editPostOnChange} />
         <button onClick={this.editPost}>Edit your post </button>
-        {/* <Likes /> */}
         <Link to={"/posts"}></Link>
-        <div>Post: {this.props.post.description}</div>
-        <div>Username: {this.props.post.username}</div>
+        <div className="post">{this.props.post.description}</div>
+        <div className="post">Posted by: {this.props.post.username}</div>
         {this.isThereProfilePic() ? (
-          <img src={this.state.userProfile.profilePic} height="100px" />
+          <Link to={"/users/" + this.props.username}>
+            <img src={this.state.userProfile.profilePic} height="100px" />
+          </Link>
         ) : (
           ""
         )}

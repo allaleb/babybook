@@ -10,6 +10,7 @@ let upload = multer({ dest: __dirname + "/uploads/" });
 reloadMagic(app);
 app.use("/", express.static("build"));
 app.use("/uploads", express.static("uploads"));
+app.use("/", express.static("public"));
 let dbo = undefined;
 let url =
   "mongodb+srv://bob:bobsue@cluster0-pwkrp.mongodb.net/test?retryWrites=true&w=majority";
@@ -29,6 +30,7 @@ app.post("/login", upload.none(), (req, res) => {
     }
     if (user === null) {
       res.send(JSON.stringify({ success: false }));
+      return;
     }
     if (user.password === pwd) {
       let sessionId = "" + Math.floor(Math.random() * 1000000);
@@ -155,25 +157,30 @@ app.post("/deleteOne", upload.none(), (req, res) => {
 
 app.post("/profile", upload.single("img"), (req, res) => {
   console.log("request to upload a profile");
-  let sid = req.cookies.sid;
-  let name = req.body.name;
-  let username = req.body.username;
-  let location = req.body.location;
-  let interests = req.body.interests;
-  let likes = req.body.likes;
-  let file = req.file;
-  let frontendPath = null;
-  console.log("cookie", sid);
-  if (file !== undefined) frontendPath = "/uploads/" + file.filename;
+  let objForUpdate = {};
+  if (req.body.name) objForUpdate.name = req.body.name;
+  if (req.body.username) objForUpdate.username = req.body.username;
+  if (req.body.location) objForUpdate.location = req.body.location;
+  if (req.body.interests) objForUpdate.interests = req.body.interests;
+  if (req.body.likes) objForUpdate.likes = req.body.likes;
+  if (req.file) objForUpdate.profilePic = "/uploads/" + req.file.filename;
+  if (req.body.bio) objForUpdate.bio = req.body.bio;
+
+  // let sid = req.cookies.sid;
+  // let name = req.body.name;
+  // let username = req.body.username;
+  // let location = req.body.location;
+  // let interests = req.body.interests;
+  // let likes = req.body.likes;
+  // let file = req.file;
+  // let bio = req.body.bio;
+  // let frontendPath = null;
+
   dbo.collection("users").update(
-    { username: username },
+    { username: req.body.username },
     {
       $set: {
-        nickName: name,
-        profilePic: frontendPath,
-        location: location,
-        interests: interests,
-        likes: likes
+        ...objForUpdate
       }
     },
     (error, insertedUser) => {
@@ -186,6 +193,52 @@ app.post("/profile", upload.single("img"), (req, res) => {
     }
   );
 });
+
+app.post("/users", upload.none(), (req, res) => {
+  let username = req.body.username;
+  console.log("/users endpoint hit");
+  dbo
+    .collection("users")
+    .find({ username: username })
+    .toArray((error, user) => {
+      if (error) {
+        console.log("error", error);
+        res.send(JSON.stringify({ success: false }));
+        return;
+      }
+      res.send(JSON.stringify(user));
+      return;
+    });
+});
+
+// app.post("/users", upload.single("img"), (req, res) => {
+//   console.log("REQUEST USER", req.body);
+
+//   let username = req.body.username;
+//   let location = req.body.location;
+//   let interests = req.body.interests;
+
+//   dbo.collection("users").findOne(
+//     { username: username },
+//     {
+//       $set: {
+//         nickName: name,
+//         profilePic: frontendPath,
+//         location: location,
+//         interests: interests,
+//         likes: likes
+//       }
+//     },
+//     (error, insertedUser) => {
+//       if (error) {
+//         console.log("/users error", error);
+//         res.send(JSON.stringify({ success: false }));
+//         return;
+//       }
+//       res.send(JSON.stringify({ success: true }));
+//     }
+//   );
+// });
 
 app.post("/likes", upload.none(), (req, res) => {
   console.log("POST to /likes:", req.body);
