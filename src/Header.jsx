@@ -28,16 +28,20 @@ class UnconnectedHeader extends Component {
       return (
         <div className="nav">
           <div className="baby">Welcome to Baby Book!</div>
-          <Link to="/" className="link" onClick={this.logOutHandler}>
-            LOG OUT
-          </Link>
           <Link to="/profile" className="link">
             PROFILE
           </Link>
+          <Link to="/milestones" className="link">
+              MILESTONES
+            </Link>
+          <Link to="/" className="link" onClick={this.logOutHandler}>
+            LOG OUT
+          </Link> 
           <div className="link">
             <Link to="/login" className="link">
               BACK
             </Link>
+            
           </div>
         </div>
       );
