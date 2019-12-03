@@ -4,11 +4,12 @@ let initialState = {
   loggedIn: false,
   username: "",
   posts: [],
-  userId:""
+  userId: "",
+  moments: [],
+  milestonesId: ""
 };
 
 let reducer = (state, action) => {
-  console.log(action);
   if (action.type === "login-success") {
     return { ...state, loggedIn: true, username: action.username };
   }
@@ -23,6 +24,14 @@ let reducer = (state, action) => {
 
   if (action.type === "set-posts") {
     return { ...state, posts: action.posts };
+  }
+
+  if (action.type === "set-moments") {
+    return {
+      ...state,
+      moments: action.moments,
+      milestonesId: action.milestonesId
+    };
   }
 
   return state;

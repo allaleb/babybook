@@ -94,7 +94,6 @@ app.get("/checkForUser", (req, res) => {
 });
 
 app.get("/allposts", (req, res) => {
-  console.log("request to get /posts");
   let cookie = req.cookies.sid;
   ///we make a request to the cookies collection and if the cookie does exist we res.send a error object and we leave the function.
   dbo
@@ -171,6 +170,22 @@ app.post("/deleteOne", upload.none(), (req, res) => {
   res.send(JSON.stringify({ success: true }));
 });
 
+app.post("/deleteMoment", upload.none(), (req, res) => {
+  //we need to accept an array of moments(it might be a string; HINT: PARSE). we will also receeive the id for the moments
+  //we need to find the matching momoents object in the milestones' collection.
+  //we will need to update this object with our new filtered moments.
+
+  let newMoments = JSON.parse(req.body.newMoments);
+  // let postId = req.body.id;
+
+  let id = req.body.id;
+
+  dbo
+    .collection("milestones")
+    .updateOne({ _id: ObjectID(id) }, { $set: { moments: newMoments } });
+  res.send(JSON.stringify({ success: true }));
+});
+
 app.post("/profile", upload.single("img"), (req, res) => {
   console.log("request to upload a profile");
   let objForUpdate = {};
@@ -227,34 +242,62 @@ app.post("/users", upload.none(), (req, res) => {
     });
 });
 
-// app.post("/users", upload.single("img"), (req, res) => {
-//   console.log("REQUEST USER", req.body);
+app.post("/firsts", upload.single("file"), (req, res) => {
+  let username = req.body.username;
+  let firsts = req.body.firsts;
+  let file = req.file;
+  let date = req.body.date;
+  let moment = { firsts, date, frontendPath: "/uploads/" + file.filename };
 
-//   let username = req.body.username;
-//   let location = req.body.location;
-//   let interests = req.body.interests;
+  dbo.collection("milestones").findOne({ username: username }, (err, user) => {
+    if (err) {
+      console.log("/firsts error", err);
+      res.send(JSON.stringify({ success: false }));
+      return;
+    }
+    if (user === null) {
+      console.log("user DOESNT EXIST");
+      dbo
+        .collection("milestones")
+        .insertOne({ username: username, moments: [moment] });
+      (error, insertedUser) => {
+        if (error) {
+          console.log("/firsts error", error);
+          res.send(JSON.stringify({ success: false }));
+          return;
+        }
+        console.log("user added");
+        res.send(JSON.stringify({ success: true }));
+        return;
+      };
+      return;
+    }
+    if (user.username === username) {
+      dbo
+        .collection("milestones")
+        .update({ username: username }, { $push: { moments: moment } });
+      res.send(JSON.stringify({ success: true }));
+      return;
+    }
+  });
+});
 
-//   dbo.collection("users").findOne(
-//     { username: username },
-//     {
-//       $set: {
-//         nickName: name,
-//         profilePic: frontendPath,
-//         location: location,
-//         interests: interests,
-//         likes: likes
-//       }
-//     },
-//     (error, insertedUser) => {
-//       if (error) {
-//         console.log("/users error", error);
-//         res.send(JSON.stringify({ success: false }));
-//         return;
-//       }
-//       res.send(JSON.stringify({ success: true }));
-//     }
-//   );
-// });
+app.post("/milestones", upload.none(), (req, res) => {
+  console.log("request to get /milestones");
+  let username = req.body.username;
+  console.log(username, "********************username");
+  dbo
+    .collection("milestones")
+    .findOne({ username: username }, (error, milestones) => {
+      if (error) {
+        console.log("error", error);
+        res.send(JSON.stringify({ success: false }));
+        return;
+      }
+      if (milestones) res.send(JSON.stringify(milestones));
+      else res.send(JSON.stringify([]));
+    });
+});
 
 app.post("/likes", upload.none(), (req, res) => {
   console.log("POST to /likes:", req.body);

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import NewPost from "./NewPost.jsx";
 import Users from "./Users.jsx";
+import Milestones from "./Milestones.jsx";
 
 class UnconnectedProfile extends Component {
   constructor() {
@@ -98,10 +99,7 @@ class UnconnectedProfile extends Component {
           <div></div>
 
           <input type="submit" value="Submit"></input>
-
-          <div></div>
         </form>
-        {/* <Users post={this.props.post} /> */}
       </div>
     );
   };

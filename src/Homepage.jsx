@@ -29,9 +29,9 @@ class UnconnectedHomepage extends Component {
     let filteredPosts = async () => {
       let response = await fetch("/allposts");
       let responseBody = await response.text();
-      console.log("response from posts", responseBody);
+     
       let parsed = JSON.parse(responseBody);
-      console.log("parsed", parsed);
+      
       this.props.dispatch({
         type: "set-posts",
         posts: parsed

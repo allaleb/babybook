@@ -3,7 +3,17 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
 class UnconnectedHeader extends Component {
-  logOutHandler = () => {
+  logOutHandler = async () => {
+    let data = new FormData();
+    let response = await fetch("/logout", {
+      method: "POST",
+      body: data,
+      credentials: "include"
+    });
+    let responseBody = await response.text();
+    // console.log("responseBody from logour", responseBody);
+    // let body = JSON.parse(responseBody);
+    // console.log("parsed body", body);
     this.props.dispatch({ type: "log-out" });
   };
 
@@ -14,8 +24,8 @@ class UnconnectedHeader extends Component {
           <div className="nav">
             <div className="baby">Welcome to Baby Book!</div>
             <div></div>
-            {/* <Link to="/signup" className="link">
-              SIGN UP
+            {/* <Link to="/profile" className="baby">
+              Welcome to Baby Book!
             </Link> */}
             {"   "}
             <Link to="/login" className="link">
@@ -32,16 +42,15 @@ class UnconnectedHeader extends Component {
             PROFILE
           </Link>
           <Link to="/milestones" className="link">
-              MILESTONES
-            </Link>
+            MILESTONES
+          </Link>
           <Link to="/" className="link" onClick={this.logOutHandler}>
             LOG OUT
-          </Link> 
+          </Link>
           <div className="link">
             <Link to="/login" className="link">
               BACK
             </Link>
-            
           </div>
         </div>
       );

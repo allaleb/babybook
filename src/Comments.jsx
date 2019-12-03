@@ -11,14 +11,14 @@ class UnconnectedComments extends Component {
   };
 
   submitHandler = async event => {
-    console.log("new comment submitted");
+   
     event.preventDefault();
     let newComments = this.props.post.comments.slice();
     newComments.push(this.props.username + ":" + this.state.comment);
     let data = new FormData();
     data.append("newComments", JSON.stringify(newComments));
     data.append("id", this.props.post._id);
-    console.log(newComments);
+    
     let response = await fetch("/comments", { method: "POST", body: data });
     let body = await response.text();
     let postUpdate = JSON.parse(body);
@@ -29,7 +29,7 @@ class UnconnectedComments extends Component {
   };
 
   render() {
-    console.log(this.props.post);
+    
     return (
       <div>
         <div>

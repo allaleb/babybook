@@ -21,7 +21,13 @@ class UnconnectedPosts extends Component {
           {/* <Link className="link-store" to="/">
             Home
           </Link> */}
-          <h1>Emily's journey</h1>
+
+          <Link to="/firsts" className="link">
+            <h3>A first time for everything</h3>
+          </Link>
+
+          {/* <h1>A first time for everything</h1> */}
+
           <NewPost />
           {this.props.posts.map(post => {
             return <Post key={post._id} post={post} />;

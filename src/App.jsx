@@ -12,6 +12,8 @@ import Header from "./Header.jsx";
 import Likes from "./Likes.jsx";
 import Users from "./Users.jsx";
 import Comments from "./Comments.jsx";
+import Firsts from "./Firsts.jsx";
+import Milestones from "./Milestones.jsx";
 
 class UnconnectedApp extends Component {
   componentDidMount = async () => {
@@ -22,6 +24,17 @@ class UnconnectedApp extends Component {
       this.props.dispatch({
         type: "login-success",
         username: loggedIn.username
+      });
+      let data = new FormData();
+      data.append("username", loggedIn.username);
+      let res = await fetch("/milestones", { method: "POST", body: data });
+      let responseBody = await res.text();
+      let moments = JSON.parse(responseBody);
+
+      this.props.dispatch({
+        type: "set-moments",
+        moments: moments.moments,
+        milestonesId: moments._id
       });
     }
   };
@@ -35,6 +48,8 @@ class UnconnectedApp extends Component {
         <Route exact={true} path="/login" component={Login} />
         <Route exact={true} path="/new-post" component={NewPost} />
         <Route exact={true} path="/posts" component={Posts} />
+        <Route exact={true} path="/firsts" component={Firsts} />
+        <Route exact={true} path="/milestones" component={Milestones} />
         <Route
           exact={true}
           path="/users/:username"
