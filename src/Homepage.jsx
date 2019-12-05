@@ -5,33 +5,41 @@ import NewPost from "./NewPost.jsx";
 import Post from "./Post.jsx";
 
 //submit handler
-let filteredPosts = async () => {
-  let response = await fetch("/posts");
-  let responseBody = await response.text();
+// let filteredPosts = async () => {
+//   let response = await fetch("/posts");
+//   let responseBody = await response.text();
 
-  let parsed = JSON.parse(responseBody);
+//   let parsed = JSON.parse(responseBody);
 
-  this.props.dispatch({
-    type: "set-posts",
-    messages: parsed
-  });
-  return parsed;
-};
+//   this.props.dispatch({
+//     type: "set-posts",
+//     messages: parsed
+//   });
+//   return parsed;
+// };
 
 class UnconnectedHomepage extends Component {
-  state = {
-    loggedIn: true,
-    posts: [],
-    filteredPosts: []
-  };
+  constructor() {
+    super();
+    this.state = {
+      loggedIn: true,
+      posts: [],
+      filteredPosts: [],
+      username: "",
+      password: "",
+      signedUp: false,
+      bio: ""
+      // };
+    };
+  }
 
   componentDidMount = () => {
     let filteredPosts = async () => {
       let response = await fetch("/allposts");
       let responseBody = await response.text();
-     
+
       let parsed = JSON.parse(responseBody);
-      
+
       this.props.dispatch({
         type: "set-posts",
         posts: parsed
@@ -42,6 +50,36 @@ class UnconnectedHomepage extends Component {
     // });
     // this.setState({ filteredPosts: filteredPosts });
     setInterval(filteredPosts, 500);
+  };
+
+  usernameHandler = event => {
+    this.setState({ username: event.target.value });
+  };
+  passwordHandler = event => {
+    this.setState({ password: event.target.value });
+  };
+
+  submitHandler = async event => {
+    event.preventDefault();
+    let username = this.state.username;
+    let password = this.state.password;
+    let bio = this.state.bio;
+    let data = new FormData();
+    data.append("username", username);
+    data.append("password", password);
+    data.append("bio", bio);
+    let response = await fetch("/signup", { method: "POST", body: data });
+    let body = await response.text();
+    console.log("/signup response", body);
+    body = JSON.parse(body);
+    if (!body.success) {
+      this.props.dispatch({ type: "unsuccessful", loggedIn: false });
+      console.log("alert");
+      alert("This username is already taken!");
+      return;
+    }
+    this.props.dispatch({ type: "signup-success", loggedIn: true });
+    this.setState({ signedUp: true });
   };
 
   render = () => {

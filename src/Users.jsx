@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import Requests from "./Requests.jsx";
 class UnconnectedUsers extends Component {
   state = {
     user: {},
@@ -16,11 +16,9 @@ class UnconnectedUsers extends Component {
     body = JSON.parse(body);
     this.setState({ user: body[0] });
     console.log("body", body);
-    
   };
 
   
-
   render() {
     return (
       <div>
@@ -29,6 +27,7 @@ class UnconnectedUsers extends Component {
         <h3>{this.state.user.interests}</h3>
         <h3>{this.state.user.location}</h3>
         <h3>{this.state.user.bio}</h3>
+        <Requests user={this.props.username} />
       </div>
     );
   }

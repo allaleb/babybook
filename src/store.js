@@ -6,7 +6,8 @@ let initialState = {
   posts: [],
   userId: "",
   moments: [],
-  milestonesId: ""
+  milestonesId: "",
+  friends: []
 };
 
 let reducer = (state, action) => {

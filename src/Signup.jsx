@@ -12,43 +12,44 @@ class UnconnectedSignup extends Component {
       bio: ""
     };
   }
-  usernameHandler = event => {
-    this.setState({ username: event.target.value });
-  };
-  passwordHandler = event => {
-    this.setState({ password: event.target.value });
-  };
-  submitHandler = async event => {
-    event.preventDefault();
-    let username = this.state.username;
-    let password = this.state.password;
-    let bio = this.state.bio;
-    let data = new FormData();
-    data.append("username", username);
-    data.append("password", password);
-    data.append("bio", bio);
-    let response = await fetch("/signup", { method: "POST", body: data });
-    let body = await response.text();
-    console.log("/signup response", body);
-    body = JSON.parse(body);
-    if (!body.success) {
-      this.props.dispatch({ type: "unsuccessful", loggedIn: false });
-      console.log("alert");
-      alert("This username is already taken!");
-      return;
-    }
-    this.props.dispatch({ type: "signup-success", loggedIn: true });
-    this.setState({ signedUp: true });
-  };
+
+  // usernameHandler = event => {
+  //   this.setState({ username: event.target.value });
+  // };
+  // passwordHandler = event => {
+  //   this.setState({ password: event.target.value });
+  // };
+  // submitHandler = async event => {
+  //   event.preventDefault();
+  //   let username = this.state.username;
+  //   let password = this.state.password;
+  //   let bio = this.state.bio;
+  //   let data = new FormData();
+  //   data.append("username", username);
+  //   data.append("password", password);
+  //   data.append("bio", bio);
+  //   let response = await fetch("/signup", { method: "POST", body: data });
+  //   let body = await response.text();
+  //   console.log("/signup response", body);
+  //   body = JSON.parse(body);
+  //   if (!body.success) {
+  //     this.props.dispatch({ type: "unsuccessful", loggedIn: false });
+  //     console.log("alert");
+  //     alert("This username is already taken!");
+  //     return;
+  //   }
+  //   this.props.dispatch({ type: "signup-success", loggedIn: true });
+  //   this.setState({ signedUp: true });
+  // };
   render = () => {
     if (this.state.signedUp === false) {
       return (
         <div>
           <div className>
             <div>
-              {/* <Link className="link-store" to="/">
+              <Link className="link-store" to="/">
                 Homepage
-              </Link> */}
+              </Link>
             </div>
           </div>
           <div className="box">
@@ -74,7 +75,8 @@ class UnconnectedSignup extends Component {
                   type="submit"
                   className="buttonSignUp"
                   value="Sign up"
-                ></input>
+                ></input>{" "}
+                */}
               </form>
             </div>
           </div>

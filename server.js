@@ -79,8 +79,7 @@ app.post("/signup", upload.none(), (req, res) => {
         .insertOne({ username: name, sessionId: sessionId });
       res.send(JSON.stringify({ success: true }));
       return;
-    }
-    res.send(JSON.stringify({ success: false }));
+    } else res.send(JSON.stringify({ success: false }));
   });
 });
 
@@ -339,6 +338,47 @@ app.post("/getProfile", upload.none(), (req, res) => {
     console.log("user", user);
     res.send(JSON.stringify({ success: true, user: user }));
   });
+});
+
+app.post("/requests", upload.none(), (req, res) => {
+  let from = req.body.from;
+  let to = req.body.to;
+  dbo.collection("requests").findOne({ from: from, to: to }, (err, doc) => {
+    if (doc === null) {
+      dbo.collection("requests").insertOne({ from: from, to: to });
+      (error, insertedUser) => {
+        if (error) {
+          console.log("/requests error", error);
+          res.send(JSON.stringify({ success: false }));
+          return;
+        }
+        console.log("user added");
+        res.send(JSON.stringify({ success: true }));
+        return;
+      };
+    } else res.send(JSON.stringify({ success: false }));
+  });
+});
+
+app.post("/displayfriends", upload.none(), (req, res) => {
+  let username = req.body.username;
+  dbo
+    .collection("requests")
+    .find({ to: username })
+    .toArray((err, arr) => {
+      res.send(JSON.stringify(arr));
+    });
+});
+
+app.post("acceptRequest", upload.none(), (req, res) => {
+  //
+});
+
+app.post("denyRequest", upload.none(), (req, res) => {
+  let from = req.body.from;
+  let friend = req.body.friend;
+  dbo.collection("requests").deleteOne({ _id: ObjectID(id) });
+  res.send(JSON.stringify({ success: true }));
 });
 
 app.all("/*", (req, res, next) => {

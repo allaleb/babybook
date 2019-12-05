@@ -28,6 +28,21 @@ class UnconnectedFirsts extends Component {
     this.setState({ date: event.target.value });
   };
 
+  fetchMoments = async () => {
+    let form = new FormData();
+    form.append("username", this.props.username);
+
+    let res = await fetch("/milestones", { method: "POST", body: form });
+    let responseBody = await res.text();
+    let returnedMoments = JSON.parse(responseBody);
+    console.log(returnedMoments, "returnedMoments");
+    this.props.dispatch({
+      type: "set-moments",
+      moments: returnedMoments.moments,
+      milestonesId: returnedMoments._id
+    });
+  };
+
   submitHandler = async event => {
     console.log("new item submitted");
     event.preventDefault();
@@ -45,16 +60,14 @@ class UnconnectedFirsts extends Component {
     // profileUpdate now contains whatever json was send back by the server in res.send
     if (firstsUpdate.success === true) {
       window.alert("Your information was received!");
+      this.fetchMoments();
 
-      // let res = await fetch("/milestones", { method: "POST", body: data });
+      // let res = await fetch("/milestones", {username: username},{ method: "POST", body: data });
       // let body = await res.text();
       // let firstLoad = JSON.parse(body);
       // if (firstLoad.success === true) {
       //   window.alert("Your information was received!");
       // }
-
-      ///we want to perform a fetch request to the milestones endpoint. This will need to include the username
-      //it will return the milestones at which moment we will need to dispatch them to the global state.
     }
   };
 

@@ -70,7 +70,7 @@ class UnconnectedPost extends Component {
         <div className="post">{this.props.post.description}</div>
         <div className="post">Posted by: {this.props.post.username}</div>
         {this.isThereProfilePic() ? (
-          <Link to={"/users/" + this.props.username}>
+          <Link to={"/users/" + this.state.userProfile.username}>
             <img src={this.state.userProfile.profilePic} height="100px" />
           </Link>
         ) : (

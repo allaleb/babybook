@@ -10,6 +10,28 @@ class UnconnectedMilestones extends Component {
     };
   }
 
+componentDidMount () {
+  this.fetchMoments
+}
+
+// fetchMoments=async ()=>{
+//   let form = new FormData();
+//     form.append("username", this.props.username);
+
+  
+//     let res = await fetch("/milestones", { method: "POST", body: form });
+//     let responseBody = await res.text();
+//     let returnedMoments = JSON.parse(responseBody);
+//     console.log(returnedMoments, "returnedMoments");
+//     this.props.dispatch({
+//       type: "set-moments",
+//       moments: returnedMoments.moments,
+//       milestonesId: returnedMoments._id
+//     });
+//   };
+
+
+
   deleteMoment = async moment => {
     console.log(this.props, "this.props");
     //we want to create a copy of the moments array to modify. Hint: slice.

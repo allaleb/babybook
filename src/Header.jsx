@@ -41,6 +41,9 @@ class UnconnectedHeader extends Component {
           <Link to="/profile" className="link">
             PROFILE
           </Link>
+          <Link to="/friends" className="link">
+            FRIENDS
+          </Link>
           <Link to="/milestones" className="link">
             MILESTONES
           </Link>
