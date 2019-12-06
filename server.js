@@ -38,7 +38,7 @@ app.post("/login", upload.none(), (req, res) => {
         .collection("cookies")
         .updateOne({ username: name }, { $set: { sessionId: sessionId } });
       res.cookie("sid", sessionId);
-      res.send(JSON.stringify({ success: true }));
+      res.send(JSON.stringify({ success: true, friends: userFriends }));
       return;
     }
     res.send(JSON.stringify({ success: false }));
@@ -72,7 +72,8 @@ app.post("/signup", upload.none(), (req, res) => {
       dbo.collection("users").insertOne({
         username: name,
         password: pwd,
-        bio: bio
+        bio: bio,
+        friends: []
       });
       dbo
         .collection("cookies")
@@ -360,7 +361,7 @@ app.post("/requests", upload.none(), (req, res) => {
   });
 });
 
-app.post("/displayfriends", upload.none(), (req, res) => {
+app.post("/displayfriendsReq", upload.none(), (req, res) => {
   let username = req.body.username;
   dbo
     .collection("requests")
@@ -370,15 +371,80 @@ app.post("/displayfriends", upload.none(), (req, res) => {
     });
 });
 
-app.post("acceptRequest", upload.none(), (req, res) => {
-  //
+app.post("/displayFriends", upload.none(), (req, res) => {
+  let username = req.body.username;
+  dbo.collection("users").find({ friends: username });
+  res.send(JSON.stringify)({ success: true });
 });
 
-app.post("denyRequest", upload.none(), (req, res) => {
+// displayFriends = async () => {
+//   let data = new FormData();
+//   console.log("username", this.props.username);
+//   data.append("username", this.props.username);
+//   let res = await fetch("/displayFriends", { method: "POST", body: data });
+//   let body = await res.text();
+//   body = JSON.parse(body);
+//   this.setState({ friends: body });
+// };
+
+app.post("/acceptRequest", upload.none(), (req, res) => {
+  let to = req.body.to;
   let from = req.body.from;
-  let friend = req.body.friend;
-  dbo.collection("requests").deleteOne({ _id: ObjectID(id) });
-  res.send(JSON.stringify({ success: true }));
+  console.log("hit accept endpoint");
+  dbo.collection("users").findOne({ username: to }, (err, doc) => {
+    console.log("friend request accepted endpoint");
+    if (doc !== null) {
+      dbo
+        .collection("users")
+        .updateOne(
+          { username: to },
+          { $push: { friends: from } },
+          (error, insertedUser) => {
+            console.log("callback update", insertedUser);
+            if (error) {
+              console.log("/accept error", error);
+              res.send(JSON.stringify({ success: false }));
+              return;
+            }
+            console.log("friend added!");
+            dbo
+              .collection("users")
+              .updateOne({ username: from }, { $push: { friends: to } });
+            res.send(JSON.stringify({ success: true }));
+
+            // dbo.collection("requests").deleteOne({ from: from, to: to }, (err, user) => {
+            //   if (err) {
+            //     res.json({ success: false });
+            //     return;
+            //   }
+            //   res.send(JSON.stringify({ success: true }));
+            // });
+            return;
+          }
+        );
+    } else {
+      res.send(JSON.stringify({ success: false }));
+      return;
+    }
+    // } else res.send(JSON.stringify({ success: false }));
+  });
+});
+
+//we want to delete the request, same process as the deny request.
+//we want to make a fetch request to the users objects in the user collection to add the from as a friend
+
+app.post("/deleteRequest", upload.none(), (req, res) => {
+  let to = req.body.to;
+  let from = req.body.from;
+  console.log(to, from);
+  //we want to delete request where the to and the from match thouse of req.body.Hint: both of these must be in the query
+  dbo.collection("requests").deleteOne({ from: from, to: to }, (err, user) => {
+    if (err) {
+      res.json({ success: false });
+      return;
+    }
+    res.send(JSON.stringify({ success: true }));
+  });
 });
 
 app.all("/*", (req, res, next) => {

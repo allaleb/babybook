@@ -78,7 +78,7 @@ class UnconnectedHomepage extends Component {
       alert("This username is already taken!");
       return;
     }
-    this.props.dispatch({ type: "signup-success", loggedIn: true });
+    this.props.dispatch({ type: "login-success", username: username });
     this.setState({ signedUp: true });
   };
 
