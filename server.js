@@ -38,7 +38,7 @@ app.post("/login", upload.none(), (req, res) => {
         .collection("cookies")
         .updateOne({ username: name }, { $set: { sessionId: sessionId } });
       res.cookie("sid", sessionId);
-      res.send(JSON.stringify({ success: true, friends: userFriends }));
+      res.send(JSON.stringify({ success: true, friends: user.friends }));
       return;
     }
     res.send(JSON.stringify({ success: false }));
@@ -242,6 +242,22 @@ app.post("/users", upload.none(), (req, res) => {
     });
 });
 
+// app.get("users/:username", upload.none(), (req, res) => {
+//   let username = req.body.username;
+//   dbo
+//     .collection("users")
+//     .find({ username: username })
+//     .toArray((error, user) => {
+//       if (error) {
+//         console.log("error", error);
+//         res.send(JSON.stringify({ success: false }));
+//         return;
+//       }
+//       res.send(JSON.stringify(user));
+//       return;
+//     });
+// });
+
 app.post("/firsts", upload.single("file"), (req, res) => {
   let username = req.body.username;
   let firsts = req.body.firsts;
@@ -373,19 +389,35 @@ app.post("/displayfriendsReq", upload.none(), (req, res) => {
 
 app.post("/displayFriends", upload.none(), (req, res) => {
   let username = req.body.username;
-  dbo.collection("users").find({ friends: username });
-  res.send(JSON.stringify)({ success: true });
-});
+  dbo.collection("users").findOne({ username: username }, (err, user) => {
+    if (err) {
+      console.log("error with request to display frineds!");
+      res.send(JSON.stringify({ success: false }));
+      return;
+    }
+    if (user === null) {
+      console.log("user not found!");
+      res.send(JSON.stringify({ success: false }));
+      return;
+    }
 
-// displayFriends = async () => {
-//   let data = new FormData();
-//   console.log("username", this.props.username);
-//   data.append("username", this.props.username);
-//   let res = await fetch("/displayFriends", { method: "POST", body: data });
-//   let body = await res.text();
-//   body = JSON.parse(body);
-//   this.setState({ friends: body });
-// };
+    if (user) {
+      dbo
+        .collection("users")
+        .find({})
+        .toArray((err, users) => {
+          let ret = user.friends.map(friend => {
+            let foundUser = users.find(user => user.username === friend);
+            return {
+              username: friend,
+              profilePic: foundUser.profilePic
+            };
+          });
+          res.send(JSON.stringify({ success: true, friends: ret }));
+        });
+    }
+  });
+});
 
 app.post("/acceptRequest", upload.none(), (req, res) => {
   let to = req.body.to;
@@ -445,6 +477,24 @@ app.post("/deleteRequest", upload.none(), (req, res) => {
     }
     res.send(JSON.stringify({ success: true }));
   });
+});
+
+app.post("/search", upload.none(), (req, res) => {
+  console.log("request to /search endpoint");
+  let searchTerm = req.body.searchTerm;
+  dbo
+    .collection("users")
+    .find({ username: { $regex: new RegExp(searchTerm) } })
+    .toArray((error, user) => {
+      if (error) {
+        console.log("error", error);
+        res.send(JSON.stringify({ success: false }));
+        return;
+      }
+      console.log("user", user);
+
+      res.send(JSON.stringify(user));
+    });
 });
 
 app.all("/*", (req, res, next) => {

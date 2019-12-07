@@ -16,6 +16,7 @@ import Firsts from "./Firsts.jsx";
 import Milestones from "./Milestones.jsx";
 import Requests from "./Requests.jsx";
 import Friends from "./Friends.jsx";
+import Search from "./Search.jsx";
 
 class UnconnectedApp extends Component {
   componentDidMount = async () => {
@@ -54,11 +55,19 @@ class UnconnectedApp extends Component {
         <Route exact={true} path="/milestones" component={Milestones} />
         <Route exact={true} path="/requests" component={Requests} />
         <Route exact={true} path="/friends" component={Friends} />
+        <Route exact={true} path="/search" component={Search} />
         <Route
           exact={true}
           path="/users/:username"
           render={routerData => (
             <Users username={routerData.match.params.username} />
+          )}
+        />
+        <Route
+          exact={true}
+          path="/friends/:username"
+          render={routerData => (
+            <Friends username={routerData.match.params.username} />
           )}
         />
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Users from "./Users.jsx";
 import Requests from "./Requests.jsx";
+import Search from "./Search.jsx";
 
 class UnconnectedFriends extends Component {
   state = {
@@ -38,7 +39,8 @@ class UnconnectedFriends extends Component {
     console.log("body", body);
     if (body.success) {
       alert("friend added");
-      this.reloadFriendReqs();
+
+      this.deleteRequest(from, to);
       return;
     }
     alert("friend was NOT added");
@@ -72,7 +74,8 @@ class UnconnectedFriends extends Component {
     let res = await fetch("/displayFriends", { method: "POST", body: data });
     let body = await res.text();
     body = JSON.parse(body);
-    this.setState({ friends: body });
+    console.log("body.friends", body.friends);
+    this.setState({ friends: body.friends });
   };
 
   reloadFriendReqs = async () => {
@@ -87,14 +90,16 @@ class UnconnectedFriends extends Component {
     body = JSON.parse(body);
     console.log("friend request", body);
     this.setState({ friendRequests: body });
+    this.displayFriends();
   };
 
   render() {
     // add a profile pic from a person who sent a request in my div.
-
+    console.log("this.state", this.state);
     return (
       <div>
-        <div>Your friend's list: </div>
+        <Search />
+        <div>Your friends' list: </div>
 
         {this.state.friendRequests.map(friend => (
           <div>
@@ -107,6 +112,16 @@ class UnconnectedFriends extends Component {
             </button>
           </div>
         ))}
+        <div>
+          {this.state.friends.map(friend => (
+            <div>
+              {/* <Link to={`/users/${user.username}`}> */}
+              <div>{friend.username}</div>
+              <img src={friend.profilePic} height="80px" />
+              {/* </Link> */}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

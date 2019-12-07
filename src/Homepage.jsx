@@ -4,20 +4,6 @@ import { Link, Redirect } from "react-router-dom";
 import NewPost from "./NewPost.jsx";
 import Post from "./Post.jsx";
 
-//submit handler
-// let filteredPosts = async () => {
-//   let response = await fetch("/posts");
-//   let responseBody = await response.text();
-
-//   let parsed = JSON.parse(responseBody);
-
-//   this.props.dispatch({
-//     type: "set-posts",
-//     messages: parsed
-//   });
-//   return parsed;
-// };
-
 class UnconnectedHomepage extends Component {
   constructor() {
     super();
