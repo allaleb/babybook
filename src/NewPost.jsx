@@ -14,7 +14,7 @@ class UnconnectedNewPost extends Component {
 
   fileChangeHandler = event => this.setState({ file: event.target.files[0] });
 
-  submitHandler = evt => {
+  submitHandler = async evt => {
     console.log("calling new post submit handler");
 
     evt.preventDefault();
@@ -22,7 +22,21 @@ class UnconnectedNewPost extends Component {
     data.append("file", this.state.file);
     data.append("description", this.state.description);
     data.append("username", this.props.username);
-    fetch("/new-post", { method: "POST", body: data });
+    let res = await fetch("/new-post", { method: "POST", body: data });
+    let resText = await res.text();
+    let resParsed = JSON.parse(resText);
+    console.log("resText", resText);
+    if (resParsed.success) {
+      let response = await fetch("/allposts");
+      let responseBody = await response.text();
+
+      let parsed = JSON.parse(responseBody);
+      console.log(parsed);
+      this.props.dispatch({
+        type: "set-posts",
+        posts: parsed
+      });
+    }
   };
 
   render = () => {

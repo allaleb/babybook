@@ -11,25 +11,23 @@ class UnconnectedComments extends Component {
   };
 
   submitHandler = async event => {
-   
     event.preventDefault();
     let newComments = this.props.post.comments.slice();
     newComments.push(this.props.username + ":" + this.state.comment);
     let data = new FormData();
     data.append("newComments", JSON.stringify(newComments));
     data.append("id", this.props.post._id);
-    
+
     let response = await fetch("/comments", { method: "POST", body: data });
     let body = await response.text();
     let postUpdate = JSON.parse(body);
 
     if (postUpdate.success === true) {
-      window.alert("Your comment was submitted!");
+      // window.alert("Your comment was submitted!");
     }
   };
 
   render() {
-    
     return (
       <div>
         <div>

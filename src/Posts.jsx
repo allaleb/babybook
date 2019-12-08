@@ -11,6 +11,17 @@ class UnconnectedPosts extends Component {
     filteredPosts: []
   };
 
+  componentDidMount = async () => {
+    let response = await fetch("/allposts");
+    let responseBody = await response.text();
+
+    let parsed = JSON.parse(responseBody);
+    console.log(parsed);
+    this.props.dispatch({
+      type: "set-posts",
+      posts: parsed
+    });
+  };
   render = () => {
     if (this.props.loggedIn) {
       return (

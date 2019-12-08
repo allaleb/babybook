@@ -88,7 +88,17 @@ app.get("/checkForUser", (req, res) => {
   let sid = req.cookies.sid;
   dbo.collection("cookies").findOne({ sessionId: sid }, (err, doc) => {
     if (doc) {
-      res.send(JSON.stringify({ success: true, username: doc.username }));
+      dbo
+        .collection("users")
+        .findOne({ username: doc.username }, (err, user) => {
+          res.send(
+            JSON.stringify({
+              success: true,
+              username: user.username,
+              friends: user.friends
+            })
+          );
+        });
     } else res.send(JSON.stringify({ success: false }));
   });
 });
@@ -105,15 +115,15 @@ app.get("/allposts", (req, res) => {
         res.send(JSON.stringify({ success: false }));
         return;
       }
+
       res.send(JSON.stringify(posts));
     });
 });
 
 app.post("/new-post", upload.single("file"), (req, res) => {
-  console.log("request to /new-post. body: ", req.body);
   let description = req.body.description;
   let file = req.file;
-  console.log("request to /new-post. body: ", file);
+
   let frontendPath = undefined;
   let type = "text";
   if (file !== undefined) {
@@ -346,13 +356,14 @@ app.post("/likes", upload.none(), (req, res) => {
 app.post("/getProfile", upload.none(), (req, res) => {
   console.log("request to upload a profile pic");
   let name = req.body.name;
+  console.log("the name is", name);
   dbo.collection("users").findOne({ username: name }, (err, user) => {
     if (err) {
       console.log("error!");
       res.send(JSON.stringify({ success: false }));
       return;
     }
-    console.log("user", user);
+
     res.send(JSON.stringify({ success: true, user: user }));
   });
 });

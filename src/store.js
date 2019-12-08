@@ -12,7 +12,12 @@ let initialState = {
 
 let reducer = (state, action) => {
   if (action.type === "login-success") {
-    return { ...state, loggedIn: true, username: action.username };
+    return {
+      ...state,
+      loggedIn: true,
+      username: action.username,
+      friends: action.friends
+    };
   }
 
   if (action.type === "signup-success") {

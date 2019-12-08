@@ -10,15 +10,14 @@ class UnconnectedMilestones extends Component {
     };
   }
 
-componentDidMount () {
-  this.fetchMoments
-}
+  componentDidMount() {
+    this.fetchMoments;
+  }
 
-fetchMoments=async ()=>{
-  let form = new FormData();
+  fetchMoments = async () => {
+    let form = new FormData();
     form.append("username", this.props.username);
-
-  
+    form.append("moment", moment.frontendPath);
     let res = await fetch("/milestones", { method: "POST", body: form });
     let responseBody = await res.text();
     let returnedMoments = JSON.parse(responseBody);
@@ -29,8 +28,6 @@ fetchMoments=async ()=>{
       milestonesId: returnedMoments._id
     });
   };
-
-
 
   deleteMoment = async moment => {
     console.log(this.props, "this.props");
@@ -45,6 +42,7 @@ fetchMoments=async ()=>{
     console.log("this.props.moment.id", this.props.milestonesid);
     data.append("id", this.props.id);
     data.append("newMoments", JSON.stringify(copy));
+
     let response = await fetch("/deleteMoment", {
       method: "POST",
       body: data

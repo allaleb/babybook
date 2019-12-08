@@ -62,12 +62,12 @@ class UnconnectedFirsts extends Component {
       window.alert("Your information was received!");
       this.fetchMoments();
 
-      // let res = await fetch("/milestones", {username: username},{ method: "POST", body: data });
-      // let body = await res.text();
-      // let firstLoad = JSON.parse(body);
-      // if (firstLoad.success === true) {
-      //   window.alert("Your information was received!");
-      // }
+      let res = await fetch("/milestones", {username: username},{ method: "POST", body: data });
+      let body = await res.text();
+      let firstLoad = JSON.parse(body);
+      if (firstLoad.success === true) {
+        window.alert("Your information was received!");
+      }
     }
   };
 

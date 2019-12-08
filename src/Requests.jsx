@@ -23,8 +23,17 @@ class UnconnectedRequests extends Component {
 
   //after the userProfile prop is passed to this component from the users component we will use the id inside of the profile, as well as
   ///the user id of the current user to make a fetch request for a friend request
+
   render() {
-    return <button onClick={this.addFriend}>Add Friend</button>;
+    return (
+      <div>
+        {this.props.username === this.props.user ? (
+          ""
+        ) : (
+          <button onClick={this.addFriend}>Add Friend</button>
+        )}
+      </div>
+    );
   }
 }
 

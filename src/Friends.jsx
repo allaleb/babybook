@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Users from "./Users.jsx";
 import Requests from "./Requests.jsx";
 import Search from "./Search.jsx";
+import { Link, Redirect } from "react-router-dom";
 
 class UnconnectedFriends extends Component {
   state = {
@@ -14,19 +15,19 @@ class UnconnectedFriends extends Component {
     this.reloadFriendReqs();
   };
 
-  reloadFriendReqs = async () => {
-    let data = new FormData();
-    console.log("username", this.props.username);
-    data.append("username", this.props.username);
-    let response = await fetch("/displayfriendsReq", {
-      method: "POST",
-      body: data
-    });
-    let body = await response.text();
-    body = JSON.parse(body);
-    console.log("friend request", body);
-    this.setState({ friendRequests: body });
-  };
+  // reloadFriendReqs = async () => {
+  //   let data = new FormData();
+  //   console.log("username", this.props.username);
+  //   data.append("username", this.props.username);
+  //   let response = await fetch("/displayfriendsReq", {
+  //     method: "POST",
+  //     body: data
+  //   });
+  //   let body = await response.text();
+  //   body = JSON.parse(body);
+  //   console.log("friend request", body);
+  //   this.setState({ friendRequests: body });
+  // };
   acceptRequest = async (from, to) => {
     let data = new FormData();
     console.log("from", from);
@@ -95,7 +96,7 @@ class UnconnectedFriends extends Component {
 
   render() {
     // add a profile pic from a person who sent a request in my div.
-    console.log("this.state", this.state);
+    // console.log("this.state.friends", this.state.friends);
     return (
       <div>
         <Search />
@@ -112,13 +113,14 @@ class UnconnectedFriends extends Component {
             </button>
           </div>
         ))}
+
         <div>
           {this.state.friends.map(friend => (
             <div>
-              {/* <Link to={`/users/${user.username}`}> */}
               <div>{friend.username}</div>
-              <img src={friend.profilePic} height="80px" />
-              {/* </Link> */}
+              <Link to={`/users/` + friend.username}>
+                <img src={friend.profilePic} height="80px" />
+              </Link>
             </div>
           ))}
         </div>

@@ -172,10 +172,10 @@ link {
   margin-right: 3rem;
 } */
 
-/* .phone {
-  display: grid;
+.cover {
+  display: flex;
   justify-content: flex-start;
-} */
+}
 
 .signup {
   font-size: 25px;

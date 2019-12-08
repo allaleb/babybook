@@ -26,7 +26,8 @@ class UnconnectedApp extends Component {
     if (loggedIn.success) {
       this.props.dispatch({
         type: "login-success",
-        username: loggedIn.username
+        username: loggedIn.username,
+        friends: loggedIn.friends
       });
       let data = new FormData();
       data.append("username", loggedIn.username);

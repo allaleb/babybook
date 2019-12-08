@@ -35,6 +35,7 @@ class UnconnectedHomepage extends Component {
     //   return posts.username === this.props.post._id;
     // });
     // this.setState({ filteredPosts: filteredPosts });
+    filteredPosts();
     setInterval(filteredPosts, 500);
   };
 
@@ -64,7 +65,11 @@ class UnconnectedHomepage extends Component {
       alert("This username is already taken!");
       return;
     }
-    this.props.dispatch({ type: "login-success", username: username });
+    this.props.dispatch({
+      type: "login-success",
+      username: username,
+      friends: []
+    });
     this.setState({ signedUp: true });
   };
 
@@ -113,8 +118,8 @@ class UnconnectedHomepage extends Component {
                 </form>
               </div>
               {/* <Signup /> */}
-              <div className="phone">
-                <img src="/phone.jpg" />
+              <div className="cover">
+                <img src="/10months.jpg" height="500px" />
               </div>
             </div>
           </div>

@@ -48,7 +48,8 @@ class UnconnectedLogin extends Component {
     }
     this.props.dispatch({
       type: "login-success",
-      username: this.state.username
+      username: this.state.username,
+      friends: body.friends
     });
   };
 
