@@ -13,7 +13,7 @@ class UnconnectedRequests extends Component {
     let response = await fetch("/requests", { method: "POST", body: data });
     let body = await response.text();
     if (body.success) alert("You have sent a friend request!");
-    else alert("you have already sent a request!");
+    else alert("Your friend request was sent!");
   };
 
   ///request component should be inside of the user's profile, and will
@@ -24,7 +24,13 @@ class UnconnectedRequests extends Component {
   //after the userProfile prop is passed to this component from the users component we will use the id inside of the profile, as well as
   ///the user id of the current user to make a fetch request for a friend request
 
+  // ||
+  // this.props.friends.includes(this.state.userProfile.friends)
+
   render() {
+    if (this.props.friends.includes(this.props.user)) {
+      return <div></div>;
+    }
     return (
       <div>
         {this.props.username === this.props.user ? (
@@ -40,7 +46,8 @@ class UnconnectedRequests extends Component {
 const mapStateToProps = state => {
   return {
     username: state.username,
-    userId: state.userId
+    userId: state.userId,
+    friends: state.friends
   };
 };
 

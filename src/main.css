@@ -71,7 +71,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: #f09595;
+  background-color: #9dd8c8;
   height: 50px;
 }
 
@@ -91,13 +91,6 @@ link {
   padding: 8px;
 }
 
-/* .row1 {
-  color: #fff;
-  font-size: 11px;
-  width: 164px;
-  cursor: pointer;
-} */
-
 .formbox {
   display: inline-block;
   width: 399px;
@@ -113,11 +106,11 @@ link {
 }
 
 .in1 {
-  width: 172px;
+  width: 100%;
 }
 
 .in2 {
-  width: 185px;
+  width: 100%;
 }
 
 .bolder {
@@ -126,27 +119,33 @@ link {
   color: #333;
 }
 .free {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   font-size: 19px;
   margin-bottom: 20px;
+  font-family: "Alatsi", sans-serif;
 }
 
 .box {
-  display: flex;
-  justify-content: flex-end;
   margin-top: 80px;
   margin-left: 50px;
 }
 
 .buttonSignUp {
+  margin-top: 10px;
+  background: #9dd8c8;
+  border-radius: 30px;
+  color: black;
+  padding: 20px;
+  border: none;
+  font-family: "Petit Formal Script", cursive;
+  font-weight: bolder;
+}
+
+.signUpButton {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
-  margin-left: 50px;
-  background: #fa697c;
-  border-radius: 30px;
-  color: white;
-  padding: 15px;
-  border: none;
 }
 
 .already {
@@ -154,6 +153,8 @@ link {
   justify-content: center;
   align-content: center;
   margin-top: 10px;
+  font-family: "Petit Formal Script", cursive;
+
   /* margin-left: 5px; */
 }
 
@@ -174,12 +175,16 @@ link {
 
 .cover {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
+  align-content: center;
+  flex-direction: row-reverse;
 }
 
 .signup {
-  font-size: 25px;
-  font-family: "Inconsolata", monospace;
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-family: "Alatsi", sans-serif;
 }
 
 .post {
@@ -190,4 +195,43 @@ link {
 .posted {
   font-size: 20px;
   font-family: "Inconsolata", monospace;
+}
+
+/* .hey {
+  background-color: pink;
+  background: url("/10months.jpg");
+} */
+
+.homepageImg {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 51px;
+  background-image: url("/socks.jpg");
+  background-position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 0 1000px rgba(194, 182, 154, 0.49);
+}
+
+.loginImg {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 51px;
+  background-image: url("/shower.jpg");
+  background-position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 0 1000px rgba(194, 158, 154, 0.29);
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }

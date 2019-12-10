@@ -14,15 +14,14 @@ class UnconnectedUsers extends Component {
     let response = await fetch("/users", { method: "POST", body: data });
     let body = await response.text();
     body = JSON.parse(body);
+    console.log("body", body[0]);
     this.setState({ user: body[0] });
-    console.log("body", body);
   };
 
-  
   render() {
     return (
       <div>
-        <h3>{"This profile page belongs to: " + this.state.user.username}</h3>
+        <h3>{"This profile page belongs to: " + this.state.user.name}</h3>
         <img src={this.state.user.profilePic} height="300px" />
         <h3>{this.state.user.interests}</h3>
         <h3>{this.state.user.location}</h3>

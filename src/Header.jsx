@@ -5,6 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 class UnconnectedHeader extends Component {
   logOutHandler = async () => {
     let data = new FormData();
+
     let response = await fetch("/logout", {
       method: "POST",
       body: data,

@@ -70,6 +70,7 @@ class UnconnectedPost extends Component {
     }
     let showPost =
       this.props.friends.includes(this.state.userProfile.username) ||
+      // this.props.friends.includes(this.state.userProfile.friends) ||
       this.state.userProfile.username === this.props.username;
     if (showPost) {
       return (
@@ -103,11 +104,14 @@ class UnconnectedPost extends Component {
       return (
         <div>
           {" "}
-          {this.state.userProfile.profilePic ? (
-            <img src={this.state.userProfile.profilePic} height="100px" />
-          ) : (
-            <img src="/noimage.png" height="100px" />
-          )}{" "}
+          <Link to={"/users/" + this.state.userProfile.username}>
+            {this.state.userProfile.username}
+            {this.state.userProfile.profilePic ? (
+              <img src={this.state.userProfile.profilePic} height="100px" />
+            ) : (
+              <img src="/noimage.png" height="100px" />
+            )}{" "}
+          </Link>
           <Requests user={this.state.userProfile.username} />{" "}
           {/* <button onClick={this.addFriend}>Add Friend</button>{" "} */}
         </div>

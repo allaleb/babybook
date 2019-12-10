@@ -64,16 +64,46 @@ class UnconnectedLogin extends Component {
               </Link> */}
             </div>
           </div>
-          <h1 className="login-name">Login </h1>
-          <form className="login-form" onSubmit={this.handleSubmit}>
-            <div>Username</div>
-            <input type="text" onChange={this.handleUsernameChange} />
-            <div></div>
-            <div>Password</div>
-            <input type="password" onChange={this.handlePasswordChange} />
-            <input type="submit" value="Login" />
-          </form>
-          <Link to="/signup" className="link-login">
+          <div className="container">
+            <div className="box">
+              <div className="cover">
+                <div className="formbox">
+                  <h1 className="signup">Login </h1>
+                  <form className="login-form" onSubmit={this.handleSubmit}>
+                    {/* <div>Username</div> */}
+                    <div>
+                      <input
+                        type="text"
+                        className="inputbody in1"
+                        placeholder="Username..."
+                        onChange={this.handleUsernameChange}
+                      />
+                    </div>
+                    {/* <div>Password</div> */}
+
+                    <div>
+                      <input
+                        type="password"
+                        className="inputbody in2"
+                        placeholder="Password..."
+                        onChange={this.handlePasswordChange}
+                      />
+                    </div>
+                    <div className="signUpButton">
+                      <input
+                        type="submit"
+                        className="buttonSignUp"
+                        value="Login"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="loginImg"> </div>
+          <Link to="/signup" className="account">
             Not a member? Click here to create an account
           </Link>
         </div>

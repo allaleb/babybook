@@ -15,7 +15,6 @@ class UnconnectedHomepage extends Component {
       password: "",
       signedUp: false,
       bio: ""
-      // };
     };
   }
 
@@ -78,12 +77,13 @@ class UnconnectedHomepage extends Component {
       return <Redirect to="/posts" />;
     } else {
       return (
-        <div>
-          <div className="container">
-            <div className="box">
+        // <div className="hey">
+        <div className="container">
+          <div className="box">
+            <div className="cover">
               <div className="formbox">
-                <h1 className="signup bolder">Signup</h1>
-                <div className="free bolder">
+                <h1 className="signup">Sign up</h1>
+                <div className="free">
                   Sign up to see photos and videos from your friends.
                 </div>
                 <form className="signup-form" onSubmit={this.submitHandler}>
@@ -101,11 +101,13 @@ class UnconnectedHomepage extends Component {
                     placeholder="Password..."
                     onChange={this.passwordHandler}
                   ></input>
-                  <input
-                    type="submit"
-                    className="buttonSignUp"
-                    value="Sign up"
-                  ></input>
+                  <div className="signUpButton">
+                    <input
+                      type="submit"
+                      className="buttonSignUp"
+                      value="Sign up"
+                    ></input>
+                  </div>
                 </form>
 
                 <form className="form">
@@ -118,12 +120,13 @@ class UnconnectedHomepage extends Component {
                 </form>
               </div>
               {/* <Signup /> */}
-              <div className="cover">
-                <img src="/10months.jpg" height="500px" />
-              </div>
+              {/* <div className="cover"> */}
+              <div className="homepageImg"> </div>
+              {/* <img src="/socks.jpg" height="500px" className="homepageImg" /> */}
+              {/* </div> */}
             </div>
           </div>
-          //{" "}
+          {/* //{" "} */}
         </div>
       );
     }

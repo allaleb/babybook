@@ -48,10 +48,13 @@ app.post("/login", upload.none(), (req, res) => {
 app.post("/logout", upload.none(), (req, res) => {
   console.log("I am in the logout enpoint");
   console.log("I am in the logout body", req.body);
+  let sessionId = req.body.sessionId;
   res.clearCookie("sid");
   // we also need to make sure that the cookie is removed form the collection on mongodb
-  let sessionId = req.cookies.sid;
-  delete sessions[sessionId];
+  dbo.collection("cookies").deleteOne({ sessionId: req.cookies.sid });
+
+  // let sessionId = req.cookies.sid;
+  // delete sessions[sessionId];
   res.clearCookie("sid");
   res.send(JSON.stringify({ success: true }));
 });

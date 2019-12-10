@@ -67,37 +67,41 @@ class UnconnectedProfile extends Component {
     return (
       <div>
         <form className="forms" onSubmit={this.submitHandler}>
-          <input
-            className="test"
-            type="text"
-            onChange={this.nameChangeHandler}
-            placeholder="You full name"
-          ></input>
-          <div></div>
-          <input
-            className="test"
-            type="text"
-            onChange={this.interestsChangeHandler}
-            placeholder="Your interests"
-          ></input>
-          <div></div>
-          <input
-            className="test"
-            type="text"
-            onChange={this.locationChangeHandler}
-            placeholder="Your location"
-          ></input>
-          <div></div>
-          <input
-            className="test"
-            type="text"
-            onChange={this.bioChangeHandler}
-            placeholder="Your bio"
-          ></input>
-          <div></div>
-          <input type="file" onChange={this.fileChangeHandler} />
-          <div></div>
-
+          <div>
+            <input
+              className="test"
+              type="text"
+              onChange={this.nameChangeHandler}
+              placeholder="You full name"
+            ></input>
+          </div>
+          <div>
+            <input
+              className="test"
+              type="text"
+              onChange={this.interestsChangeHandler}
+              placeholder="Your interests"
+            ></input>
+          </div>
+          <div>
+            <input
+              className="test"
+              type="text"
+              onChange={this.locationChangeHandler}
+              placeholder="Your location"
+            ></input>
+          </div>
+          <div>
+            <input
+              className="test"
+              type="text"
+              onChange={this.bioChangeHandler}
+              placeholder="Your bio"
+            ></input>
+          </div>
+          <div>
+            <input type="file" onChange={this.fileChangeHandler} />
+          </div>
           <input type="submit" value="Submit"></input>
         </form>
       </div>
