@@ -132,6 +132,11 @@ link {
   margin-left: 50px;
 }
 
+.box1 {
+  margin-top: 150px;
+  margin-left: 50px;
+}
+
 .buttonSignUp {
   margin-top: 10px;
   background: #9dd8c8;
@@ -141,11 +146,28 @@ link {
   border: none;
   font-family: "Petit Formal Script", cursive;
   font-weight: bolder;
+  width: 50%;
 }
 
 .signUpButton {
   display: flex;
   justify-content: center;
+}
+
+.buttonLogin {
+  margin-top: 10px;
+  background: #fd7792;
+  border-radius: 30px;
+  color: black;
+  padding: 5px;
+  border: none;
+  font-family: "Petit Formal Script", cursive;
+  font-weight: bolder;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  /* margin-left: 100px; */
 }
 
 .already {
@@ -234,4 +256,59 @@ link {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.postContainer {
+  /* position: absolute; */
+  left: 100px;
+  top: 150px;
+  display: flex;
+}
+
+.postInput {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  font-style: italic;
+  color: #444;
+  outline: none;
+  height: 25px;
+  font-family: "Roboto", sans-serif;
+  border: 1px #f1fa3c;
+  border-radius: none;
+  margin-top: 20px;
+  position: relative;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+
+.profile {
+  border-radius: 50%;
+}
+
+.boxx {
+  display: flex;
+  margin-left: 200px;
+}
+
+.createNew {
+  margin-top: 10px;
+  background: #ffc6c7;
+  border-radius: 30px;
+  color: black;
+  padding: 20px;
+  border: none;
+  font-family: "Petit Formal Script", cursive;
+  font-weight: bolder;
+  width: 30%;
+}
+
+.space {
+  margin-left: 50px;
+}
+
+.pace-div {
+  display: flex;
+  align-items: center;
 }

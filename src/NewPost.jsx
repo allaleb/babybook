@@ -42,13 +42,21 @@ class UnconnectedNewPost extends Component {
   render = () => {
     return (
       <form onSubmit={this.submitHandler}>
-        <input type="file" onChange={this.fileChangeHandler} />
-        <input
-          type="text"
-          value={this.state.description}
-          onChange={this.descChangeHandler}
-        />
-        <input type="submit" value="create new" />
+        <div className="postContainer">
+          <div className="post">
+            <input
+              type="text"
+              value={this.state.description}
+              onChange={this.descChangeHandler}
+              className="postInput"
+              placeholder="What's on your mind?"
+            />
+            <input type="file" onChange={this.fileChangeHandler} />
+            <div className="space-div">
+              <input type="submit" value="Post" className="createNew" />
+            </div>
+          </div>
+        </div>
       </form>
     );
   };

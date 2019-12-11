@@ -7,7 +7,8 @@ let initialState = {
   userId: "",
   moments: [],
   milestonesId: "",
-  friends: []
+  friends: [],
+  profilePic: ""
 };
 
 let reducer = (state, action) => {
@@ -16,7 +17,8 @@ let reducer = (state, action) => {
       ...state,
       loggedIn: true,
       username: action.username,
-      friends: action.friends
+      friends: action.friends,
+      profilePic: action.profilePic
     };
   }
 

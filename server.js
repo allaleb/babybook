@@ -38,7 +38,13 @@ app.post("/login", upload.none(), (req, res) => {
         .collection("cookies")
         .updateOne({ username: name }, { $set: { sessionId: sessionId } });
       res.cookie("sid", sessionId);
-      res.send(JSON.stringify({ success: true, friends: user.friends }));
+      res.send(
+        JSON.stringify({
+          success: true,
+          friends: user.friends,
+          profilePic: user.profilePic
+        })
+      );
       return;
     }
     res.send(JSON.stringify({ success: false }));
@@ -81,6 +87,7 @@ app.post("/signup", upload.none(), (req, res) => {
       dbo
         .collection("cookies")
         .insertOne({ username: name, sessionId: sessionId });
+      res.cookie("sid", sessionId);
       res.send(JSON.stringify({ success: true }));
       return;
     } else res.send(JSON.stringify({ success: false }));
@@ -311,9 +318,10 @@ app.post("/firsts", upload.single("file"), (req, res) => {
   });
 });
 
-app.post("/milestones", upload.none(), (req, res) => {
+app.post("/milestones", upload.single("file"), (req, res) => {
   console.log("request to get /milestones");
   let username = req.body.username;
+  let file = req.file;
   console.log(username, "********************username");
   dbo
     .collection("milestones")

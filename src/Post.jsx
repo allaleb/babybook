@@ -70,7 +70,7 @@ class UnconnectedPost extends Component {
     }
     let showPost =
       this.props.friends.includes(this.state.userProfile.username) ||
-      // this.props.friends.includes(this.state.userProfile.friends) ||
+      this.props.friends.includes(this.state.userProfile.friends) ||
       this.state.userProfile.username === this.props.username;
     if (showPost) {
       return (

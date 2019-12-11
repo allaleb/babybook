@@ -49,7 +49,8 @@ class UnconnectedLogin extends Component {
     this.props.dispatch({
       type: "login-success",
       username: this.state.username,
-      friends: body.friends
+      friends: body.friends,
+      profilePic: body.profilePic
     });
   };
 
@@ -65,7 +66,7 @@ class UnconnectedLogin extends Component {
             </div>
           </div>
           <div className="container">
-            <div className="box">
+            <div className="box1">
               <div className="cover">
                 <div className="formbox">
                   <h1 className="signup">Login </h1>
@@ -90,11 +91,13 @@ class UnconnectedLogin extends Component {
                       />
                     </div>
                     <div className="signUpButton">
-                      <input
-                        type="submit"
-                        className="buttonSignUp"
-                        value="Login"
-                      />
+                      <div className="buttonLogin">
+                        <input
+                          type="submit"
+                          className="buttonLogin"
+                          value="Login"
+                        />
+                      </div>
                     </div>
                   </form>
                 </div>
@@ -102,10 +105,15 @@ class UnconnectedLogin extends Component {
             </div>
           </div>
 
-          <div className="loginImg"> </div>
-          <Link to="/signup" className="account">
-            Not a member? Click here to create an account
+          <Link className="link" to="/signup">
+            <div className="account">Not a member? </div>
+            <div className="account">Click here to create an account.</div>
           </Link>
+
+          <div className="loginImg"> </div>
+          {/* <Link to="/signup" className="account">
+            Not a member? Click here to create an account
+          </Link> */}
         </div>
       );
     }

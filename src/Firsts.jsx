@@ -12,7 +12,8 @@ class UnconnectedFirsts extends Component {
       firsts: "",
       file: "",
       date: "",
-      firstsUpdate: ""
+      firstsUpdate: "",
+      buttonClicked: false
     };
   }
 
@@ -46,27 +47,37 @@ class UnconnectedFirsts extends Component {
   submitHandler = async event => {
     console.log("new item submitted");
     event.preventDefault();
-    let data = new FormData();
-    data.append("firsts", this.state.first);
-    data.append("file", this.state.file);
-    data.append("date", this.state.date);
-    data.append("username", this.props.username);
+    if (this.state.buttonClicked === false) {
+      this.setState({ buttonClicked: true });
+      let data = new FormData();
+      data.append("firsts", this.state.first);
+      data.append("file", this.state.file);
+      data.append("date", this.state.date);
+      data.append("username", this.props.username);
 
-    let response = await fetch("/firsts", { method: "POST", body: data });
-    // response is now a response object
-    let body = await response.text();
-    // body is now the response body
-    let firstsUpdate = JSON.parse(body);
-    // profileUpdate now contains whatever json was send back by the server in res.send
-    if (firstsUpdate.success === true) {
-      window.alert("Your information was received!");
-      this.fetchMoments();
-
-      let res = await fetch("/milestones", {username: username},{ method: "POST", body: data });
-      let body = await res.text();
-      let firstLoad = JSON.parse(body);
-      if (firstLoad.success === true) {
+      let response = await fetch("/firsts", { method: "POST", body: data });
+      // response is now a response object
+      let body = await response.text();
+      // body is now the response body
+      let firstsUpdate = JSON.parse(body);
+      // profileUpdate now contains whatever json was send back by the server in res.send
+      if (firstsUpdate.success === true) {
         window.alert("Your information was received!");
+        this.setState({ buttonClicked: false });
+        this.fetchMoments();
+
+        let res = await fetch(
+          "/milestones",
+
+          // { username: username },
+
+          { method: "POST", body: data }
+        );
+        let body = await res.text();
+        let firstLoad = JSON.parse(body);
+        if (firstLoad.success === true) {
+          window.alert("Your information was received!");
+        }
       }
     }
   };
