@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 class UnconnectedLikes extends Component {
   likePost = async () => {
@@ -19,7 +21,13 @@ class UnconnectedLikes extends Component {
     let numberOfLikes = this.props.post.likes
       ? this.props.post.likes.length
       : 0;
-    return <button onClick={this.likePost}>❤️ Likes ❤️ {numberOfLikes}</button>;
+    return (
+      <button onClick={this.likePost}>
+        {" "}
+        <FontAwesomeIcon icon={faHeart} color="pink" size="4x" />{" "}
+        {numberOfLikes}
+      </button>
+    );
   }
 }
 

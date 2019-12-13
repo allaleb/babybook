@@ -17,6 +17,8 @@ import Milestones from "./Milestones.jsx";
 import Requests from "./Requests.jsx";
 import Friends from "./Friends.jsx";
 import Search from "./Search.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 class UnconnectedApp extends Component {
   componentDidMount = async () => {

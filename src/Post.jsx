@@ -5,6 +5,8 @@ import Likes from "./Likes.jsx";
 import Comments from "./Comments.jsx";
 import Friends from "./Friends.jsx";
 import Requests from "./Requests.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 
 class UnconnectedPost extends Component {
   constructor(props) {
@@ -12,7 +14,8 @@ class UnconnectedPost extends Component {
     this.state = {
       userProfile: {
         friends: []
-      }
+      },
+      expanded: false
     };
   }
 
@@ -30,6 +33,8 @@ class UnconnectedPost extends Component {
       userProfile: profile.user
     });
   };
+
+  expand = () => this.setState({ expanded: !this.state.expanded });
 
   deleteOne = async () => {
     let data = new FormData();
@@ -73,43 +78,135 @@ class UnconnectedPost extends Component {
       this.props.friends.includes(this.state.userProfile.friends) ||
       this.state.userProfile.username === this.props.username;
     if (showPost) {
-      return (
-        <div style={{ border: "3px solid black", margin: "10px" }}>
-          <button onClick={this.deleteOne}>Delete this post </button>
-          <button onClick={this.delete}>Delete all posts </button>
-          <input type="text" onChange={this.editPostOnChange} />
-          <button onClick={this.editPost}>Edit your post </button>
-          <Link to={"/posts"}></Link>
-          <div className="post">{this.props.post.description}</div>
-          <div className="post">Posted by: {this.props.post.username}</div>
-          {this.isThereProfilePic() ? (
-            <Link to={"/users/" + this.state.userProfile.username}>
-              <img src={this.state.userProfile.profilePic} height="100px" />
-            </Link>
-          ) : (
-            <Link to={"/users/" + this.state.userProfile.username}>
-              <img src="/noimage.png" height="100px" />
-            </Link>
-          )}
-          {dispToggle ? (
-            <img src={this.props.post.frontendPath} height="400px" />
-          ) : (
-            ""
-          )}
-          <Likes post={this.props.post} />
+      let menu = (
+        // (<button onClick={this.expand()}>+</button>)
+        <div>
+          <button onClick={this.expand}>
+            {" "}
+            <FontAwesomeIcon icon={faAngleDoubleDown} color="grey" size="2x" />
+          </button>
           <Comments post={this.props.post} />
+          <div className={this.state.expanded + "Show"}>
+            <div className="buttons">
+              <button onClick={this.deleteOne} className="buttonDeletePost">
+                Delete this post{" "}
+              </button>
+
+              <button onClick={this.delete} className="buttonDeletePost">
+                Delete all posts{" "}
+              </button>
+            </div>
+            <div>
+              <input
+                type="text"
+                className="edit"
+                onChange={this.editPostOnChange}
+              />
+            </div>
+
+            <div>
+              <button onClick={this.editPost} className="buttonSignUp">
+                Edit your post{" "}
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+      return (
+        <div className="entirePost">
+          <div style={{ border: "3px solid black", margin: "10px" }}>
+            <div className="description"></div>
+            {this.isThereProfilePic() ? (
+              <Link to={"/users/" + this.state.userProfile.username}>
+                <img
+                  src={this.state.userProfile.profilePic}
+                  className="profilePicture"
+                  height="100px"
+                />
+              </Link>
+            ) : (
+              <Link to={"/users/" + this.state.userProfile.username}>
+                <img
+                  src="/noimage.png"
+                  className="profilePicture"
+                  height="100px"
+                />
+              </Link>
+            )}
+            {dispToggle ? (
+              <img
+                src={this.props.post.frontendPath}
+                className="profilePicture"
+                height="600px"
+              />
+            ) : (
+              ""
+            )}
+
+            <Likes post={this.props.post} />
+          </div>
+          <div>
+            <div className="comments">
+              <div className="posts">
+                <div className="posts">
+                  <div className="by">
+                    <div className="byName">
+                      <div>Posted by: {this.props.post.username}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="desc">{this.props.post.description}</div>
+              </div>
+
+              {menu}
+            </div>
+            {/* <div>
+              <button onClick={this.deleteOne} className="deletePost">
+                Delete this post{" "}
+              </button>
+            </div>
+            <div>
+              <button onClick={this.delete} className="deletePosts">
+                Delete all posts{" "}
+              </button>
+            </div>
+            <div>
+              <input
+                type="text"
+                className="edit"
+                onChange={this.editPostOnChange}
+              />
+            </div>
+            <div>
+              <button onClick={this.editPost} className="editPost">
+                Edit your post{" "}
+              </button>
+            </div> */}
+            <Link to={"/posts"}></Link>
+          </div>
         </div>
       );
     } else
       return (
         <div>
           {" "}
-          <Link to={"/users/" + this.state.userProfile.username}>
-            {this.state.userProfile.username}
+          <Link
+            className="Link"
+            to={"/users/" + this.state.userProfile.username}
+          >
+            <div className="user"> {this.state.userProfile.username}</div>
             {this.state.userProfile.profilePic ? (
-              <img src={this.state.userProfile.profilePic} height="100px" />
+              <img
+                src={this.state.userProfile.profilePic}
+                className="profilePicture"
+                height="100px"
+              />
             ) : (
-              <img src="/noimage.png" height="100px" />
+              <img
+                src="/noimage.png"
+                className="profilePicture"
+                height="100px"
+              />
             )}{" "}
           </Link>
           <Requests user={this.state.userProfile.username} />{" "}

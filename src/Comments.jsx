@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Post from "./Post.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
 
 class UnconnectedComments extends Component {
   state = {
@@ -31,8 +33,9 @@ class UnconnectedComments extends Component {
     return (
       <div>
         <div>
+          <FontAwesomeIcon icon={faComment} color="white" size="2x" />
           {this.props.post.comments.map(comment => {
-            return <div>{comment}</div>;
+            return <div className="comment">{comment}</div>;
           })}
         </div>
         <form className="forms" onSubmit={this.submitHandler}>

@@ -63,7 +63,11 @@ class UnconnectedSearch extends Component {
                   <div>
                     <Link to={`/users/${user.username}`}>
                       {user.username}{" "}
-                      <img src={user.profilePic} height="80px" />
+                      <img
+                        src={user.profilePic}
+                        className="profilePicture"
+                        height="100px"
+                      />
                     </Link>
                   </div>
                 </div>

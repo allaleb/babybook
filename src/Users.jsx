@@ -22,7 +22,11 @@ class UnconnectedUsers extends Component {
     return (
       <div>
         <h3>{"This profile page belongs to: " + this.state.user.name}</h3>
-        <img src={this.state.user.profilePic} height="300px" />
+        <img
+          src={this.state.user.profilePic}
+          className="profilePicture"
+          height="300px"
+        />
         <h3>{this.state.user.interests}</h3>
         <h3>{this.state.user.location}</h3>
         <h3>{this.state.user.bio}</h3>

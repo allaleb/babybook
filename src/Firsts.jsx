@@ -84,26 +84,28 @@ class UnconnectedFirsts extends Component {
 
   render = () => {
     return (
-      <div>
-        <form className="forms" onSubmit={this.submitHandler}>
-          <input
-            className="test"
-            type="text"
-            onChange={this.firstChangeHandler}
-            placeholder="My first...."
-          ></input>
+      <div className="firsts">
+        <div>
+          <form className="forms" onSubmit={this.submitHandler}>
+            <input
+              className="test"
+              type="text"
+              onChange={this.firstChangeHandler}
+              placeholder="My first...."
+            ></input>
 
-          <input
-            className="test"
-            type="date"
-            onChange={this.dateChangeHandler}
-          ></input>
+            <input
+              className="test"
+              type="date"
+              onChange={this.dateChangeHandler}
+            ></input>
 
-          <input type="file" onChange={this.fileChangeHandler} />
+            <input type="file" onChange={this.fileChangeHandler} />
 
-          <input type="submit" value="Submit"></input>
-        </form>
-        <Milestones firstsUpdate={this.state.firstsUpdate} />
+            <input type="submit" value="Submit"></input>
+          </form>
+          <Milestones firstsUpdate={this.state.firstsUpdate} />
+        </div>
       </div>
     );
   };

@@ -36,7 +36,9 @@ class UnconnectedRequests extends Component {
         {this.props.username === this.props.user ? (
           ""
         ) : (
-          <button onClick={this.addFriend}>Add Friend</button>
+          <button onClick={this.addFriend} className="addFriend">
+            Add Friend
+          </button>
         )}
       </div>
     );

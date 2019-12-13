@@ -73,7 +73,7 @@ class UnconnectedMilestones extends Component {
 
   render() {
     return (
-      <div>
+      <div className="miles">
         {this.props.moments.map(moment => (
           <div>
             {moment.firsts}

@@ -33,26 +33,27 @@ class UnconnectedPosts extends Component {
             Home
             
           </Link> */}
+          <div className="postsPage">
+            <Link to="/firsts" className="link">
+              <h3>A FIRST TIME FOR EVERYTHING...</h3>
+            </Link>
+            <div className="boxx">
+              <img
+                src={this.props.profilePic}
+                className="profile"
+                height="200px"
+              />
+              <div className="space"></div>
+              <NewPost />
+            </div>
 
-          <Link to="/firsts" className="link">
-            <h3>A first time for everything</h3>
-          </Link>
-          <div className="boxx">
-            <img
-              src={this.props.profilePic}
-              className="profile"
-              height="200px"
-            />
-            <div className="space"></div>
-            <NewPost />
+            {/* <h1>A first time for everything</h1> */}
+
+            {/* <NewPost /> */}
+            {this.props.posts.map(post => {
+              return <Post key={post._id} post={post} />;
+            })}
           </div>
-
-          {/* <h1>A first time for everything</h1> */}
-
-          {/* <NewPost /> */}
-          {this.props.posts.map(post => {
-            return <Post key={post._id} post={post} />;
-          })}
         </div>
       );
     } else {

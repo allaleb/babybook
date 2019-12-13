@@ -72,7 +72,7 @@ class UnconnectedProfile extends Component {
               className="test"
               type="text"
               onChange={this.nameChangeHandler}
-              placeholder="You full name"
+              placeholder="Your full name"
             ></input>
           </div>
           <div>

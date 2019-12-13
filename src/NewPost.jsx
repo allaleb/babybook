@@ -43,15 +43,29 @@ class UnconnectedNewPost extends Component {
     return (
       <form onSubmit={this.submitHandler}>
         <div className="postContainer">
-          <div className="post">
-            <input
-              type="text"
-              value={this.state.description}
-              onChange={this.descChangeHandler}
-              className="postInput"
-              placeholder="What's on your mind?"
-            />
-            <input type="file" onChange={this.fileChangeHandler} />
+          <div className="posted">
+            <div>
+              <input
+                type="text"
+                value={this.state.description}
+                onChange={this.descChangeHandler}
+                className="postInputs"
+                placeholder="What's on your mind?"
+              />
+            </div>
+            <div className="hidden">
+              <label for="foobar" className="choose">
+                Upload a file
+              </label>
+              <div>
+                <input
+                  type="file"
+                  id="foobar"
+                  // className="newPostFile"
+                  onChange={this.fileChangeHandler}
+                />
+              </div>
+            </div>
             <div className="space-div">
               <input type="submit" value="Post" className="createNew" />
             </div>

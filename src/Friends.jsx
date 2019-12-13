@@ -100,29 +100,38 @@ class UnconnectedFriends extends Component {
     return (
       <div>
         <Search />
-        <div>Your friends' list: </div>
+        <div className="friends">
+          <div>Your friends' list: </div>
 
-        {this.state.friendRequests.map(friend => (
-          <div>
-            {friend.from}
-            <button onClick={() => this.acceptRequest(friend.from, friend.to)}>
-              ACCEPT REQUEST
-            </button>
-            <button onClick={() => this.deleteRequest(friend.from, friend.to)}>
-              DENY REQUEST
-            </button>
-          </div>
-        ))}
-
-        <div>
-          {this.state.friends.map(friend => (
+          {this.state.friendRequests.map(friend => (
             <div>
-              <div>{friend.username}</div>
-              <Link to={`/users/` + friend.username}>
-                <img src={friend.profilePic} height="80px" />
-              </Link>
+              {friend.from}
+              <button
+                onClick={() => this.acceptRequest(friend.from, friend.to)}
+              >
+                ACCEPT REQUEST
+              </button>
+              <button
+                onClick={() => this.deleteRequest(friend.from, friend.to)}
+              >
+                DENY REQUEST
+              </button>
             </div>
           ))}
+
+          <div>
+            {this.state.friends.map(friend => (
+              <div>
+                <img
+                  src={friend.profilePic}
+                  className="profilePicture"
+                  height="80px"
+                />
+                <Link to={`/users/` + friend.username}></Link>
+                <div className="userName">{friend.username} </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
