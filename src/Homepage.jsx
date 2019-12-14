@@ -84,7 +84,7 @@ class UnconnectedHomepage extends Component {
               <div className="formbox">
                 <h1 className="signup">Sign up</h1>
                 <div className="free">
-                  Sign up to see photos and videos from your friends.
+                  Sign up to see photos from your friends.
                 </div>
                 <form className="signup-form" onSubmit={this.submitHandler}>
                   <input
@@ -113,8 +113,8 @@ class UnconnectedHomepage extends Component {
                 <form className="form">
                   <div className="link-login">
                     <Link className="link" to="/login">
-                      <div className="account">Already have an account? </div>
-                      <div className="account">Click here to log in.</div>
+                      <div className="account1">Already have an account? </div>
+                      <div className="account1">Click here to log in.</div>
                     </Link>
                   </div>
                 </form>

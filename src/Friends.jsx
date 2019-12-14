@@ -98,20 +98,22 @@ class UnconnectedFriends extends Component {
     // add a profile pic from a person who sent a request in my div.
     // console.log("this.state.friends", this.state.friends);
     return (
-      <div>
+      <div className="friends-container">
         <Search />
         <div className="friends">
-          <div>Your friends' list: </div>
+          <div className="friendsList">Your friends' list: </div>
 
           {this.state.friendRequests.map(friend => (
-            <div>
-              {friend.from}
+            <div className="tests">
+              <div className="tests1">{friend.from}</div>
               <button
+                className="accept"
                 onClick={() => this.acceptRequest(friend.from, friend.to)}
               >
                 ACCEPT REQUEST
               </button>
               <button
+                className="accept"
                 onClick={() => this.deleteRequest(friend.from, friend.to)}
               >
                 DENY REQUEST
@@ -119,15 +121,17 @@ class UnconnectedFriends extends Component {
             </div>
           ))}
 
-          <div>
+          <div className="tests">
             {this.state.friends.map(friend => (
               <div>
-                <img
-                  src={friend.profilePic}
-                  className="profilePicture"
-                  height="80px"
-                />
-                <Link to={`/users/` + friend.username}></Link>
+                {" "}
+                <Link to={`/users/` + friend.username}>
+                  <img
+                    src={friend.profilePic}
+                    className="profilePicture"
+                    height="80px"
+                  />
+                </Link>
                 <div className="userName">{friend.username} </div>
               </div>
             ))}

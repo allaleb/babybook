@@ -65,45 +65,68 @@ class UnconnectedProfile extends Component {
 
   render = () => {
     return (
-      <div>
-        <form className="forms" onSubmit={this.submitHandler}>
-          <div>
+      <div className="info flex-end">
+        <div className="information">
+          <form className="forms" onSubmit={this.submitHandler}>
+            <div>
+              <input
+                className="test"
+                type="text"
+                onChange={this.nameChangeHandler}
+                placeholder="Your full name..."
+              ></input>
+            </div>
+            <div>
+              <input
+                className="test"
+                type="text"
+                onChange={this.interestsChangeHandler}
+                placeholder="Your interests..."
+              ></input>
+            </div>
+            <div>
+              <input
+                className="test"
+                type="text"
+                onChange={this.locationChangeHandler}
+                placeholder="Your location..."
+              ></input>
+            </div>
+            <div>
+              <input
+                className="test"
+                type="text"
+                onChange={this.bioChangeHandler}
+                placeholder="Your bio..."
+              ></input>
+            </div>
+
+            <div className="hidden2">
+              <label for="foobar" className="choose">
+                Upload a file
+              </label>
+              <div>
+                <input
+                  type="file"
+                  id="foobar"
+                  // className="newPostFile"
+                  onChange={this.fileChangeHandler}
+                />
+              </div>
+            </div>
+
+            {/* <div>
+              <input type="file" onChange={this.fileChangeHandler} />
+            </div> */}
             <input
-              className="test"
-              type="text"
-              onChange={this.nameChangeHandler}
-              placeholder="Your full name"
+              type="submit"
+              value="Submit"
+              className="submitFirstsProfile"
             ></input>
-          </div>
-          <div>
-            <input
-              className="test"
-              type="text"
-              onChange={this.interestsChangeHandler}
-              placeholder="Your interests"
-            ></input>
-          </div>
-          <div>
-            <input
-              className="test"
-              type="text"
-              onChange={this.locationChangeHandler}
-              placeholder="Your location"
-            ></input>
-          </div>
-          <div>
-            <input
-              className="test"
-              type="text"
-              onChange={this.bioChangeHandler}
-              placeholder="Your bio"
-            ></input>
-          </div>
-          <div>
-            <input type="file" onChange={this.fileChangeHandler} />
-          </div>
-          <input type="submit" value="Submit"></input>
-        </form>
+            {/* <input type="submit" value="Submit"></input> */}
+          </form>
+        </div>
+        //{" "}
       </div>
     );
   };

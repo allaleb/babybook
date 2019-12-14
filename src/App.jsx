@@ -17,8 +17,7 @@ import Milestones from "./Milestones.jsx";
 import Requests from "./Requests.jsx";
 import Friends from "./Friends.jsx";
 import Search from "./Search.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class UnconnectedApp extends Component {
   componentDidMount = async () => {
@@ -48,6 +47,7 @@ class UnconnectedApp extends Component {
   render = () => {
     return (
       <BrowserRouter>
+        {/* <div className="newDiv"> */}
         <Header />
         <Route exact={true} path="/" component={Homepage} />
         <Route exact={true} path="/signup" component={Signup} />
@@ -88,6 +88,7 @@ class UnconnectedApp extends Component {
             <Profile username={routerData.match.params.username} />
           )}
         />
+        {/* </div> */}
       </BrowserRouter>
     );
   };

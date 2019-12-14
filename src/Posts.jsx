@@ -34,9 +34,9 @@ class UnconnectedPosts extends Component {
             
           </Link> */}
           <div className="postsPage">
-            <Link to="/firsts" className="link">
-              <h3>A FIRST TIME FOR EVERYTHING...</h3>
-            </Link>
+            {/* <Link to="/firsts" className="link">
+              <div className="time">A first time for everything...</div>
+            </Link> */}
             <div className="boxx">
               <img
                 src={this.props.profilePic}
@@ -45,6 +45,9 @@ class UnconnectedPosts extends Component {
               />
               <div className="space"></div>
               <NewPost />
+              {/* <Link to="/firsts" className="link">
+                <div className="time">A first time for everything...</div>
+              </Link> */}
             </div>
 
             {/* <h1>A first time for everything</h1> */}

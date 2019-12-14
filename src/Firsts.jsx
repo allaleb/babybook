@@ -84,27 +84,52 @@ class UnconnectedFirsts extends Component {
 
   render = () => {
     return (
-      <div className="firsts">
-        <div>
-          <form className="forms" onSubmit={this.submitHandler}>
-            <input
-              className="test"
-              type="text"
-              onChange={this.firstChangeHandler}
-              placeholder="My first...."
-            ></input>
+      <div className="info1 flex-end">
+        <div className="information">
+          <div>
+            <form className="forms" onSubmit={this.submitHandler}>
+              <input
+                className="test"
+                type="text"
+                onChange={this.firstChangeHandler}
+                placeholder="My first...."
+              ></input>
+              <div></div>
+              <input
+                className="test"
+                type="date"
+                onChange={this.dateChangeHandler}
+              ></input>
+              <div></div>
 
-            <input
-              className="test"
-              type="date"
-              onChange={this.dateChangeHandler}
-            ></input>
+              <div className="upl margin-right ">
+                <label for="foobar" className="choose1">
+                  Upload a file
+                </label>
+                <div>
+                  <input
+                    type="file"
+                    id="foobar"
+                    // className="newPostFile"
+                    onChange={this.fileChangeHandler}
+                  />
+                </div>
+              </div>
 
-            <input type="file" onChange={this.fileChangeHandler} />
-
-            <input type="submit" value="Submit"></input>
-          </form>
-          <Milestones firstsUpdate={this.state.firstsUpdate} />
+              {/* <input
+                type="file"
+                onChange={this.fileChangeHandler}
+                className="submitFirsts"
+              />
+              <div></div> */}
+              <input
+                type="submit"
+                value="Submit"
+                className="submitFirsts margin-right"
+              ></input>
+            </form>
+            <Milestones firstsUpdate={this.state.firstsUpdate} />
+          </div>
         </div>
       </div>
     );

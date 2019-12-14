@@ -20,16 +20,28 @@ class UnconnectedUsers extends Component {
 
   render() {
     return (
-      <div>
-        <h3>{"This profile page belongs to: " + this.state.user.name}</h3>
+      <div className="usersInfo">
+        <div className="belongs">
+          {"This profile page belongs to " + this.state.user.name}
+        </div>
         <img
           src={this.state.user.profilePic}
           className="profilePicture"
           height="300px"
         />
-        <h3>{this.state.user.interests}</h3>
-        <h3>{this.state.user.location}</h3>
-        <h3>{this.state.user.bio}</h3>
+        <div className="me">About me:</div>
+        {/* <div className="groupCont"> */}
+        <div className="group">
+          <div className="interests">
+            Interests: {this.state.user.interests}
+          </div>
+
+          <div className="interests">I am from {this.state.user.location}</div>
+
+          <div className="interests">{this.state.user.bio}</div>
+          {/* {/* </div> */}
+        </div>{" "}
+        {/* */}
         <Requests user={this.props.username} />
       </div>
     );

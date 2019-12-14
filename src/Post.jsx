@@ -81,40 +81,41 @@ class UnconnectedPost extends Component {
       let menu = (
         // (<button onClick={this.expand()}>+</button>)
         <div>
+          <Comments post={this.props.post} />
           <button onClick={this.expand}>
             {" "}
             <FontAwesomeIcon icon={faAngleDoubleDown} color="grey" size="2x" />
           </button>
-          <Comments post={this.props.post} />
           <div className={this.state.expanded + "Show"}>
             <div className="buttons">
               <button onClick={this.deleteOne} className="buttonDeletePost">
                 Delete this post{" "}
               </button>
 
-              <button onClick={this.delete} className="buttonDeletePost">
+              <button onClick={this.delete} className="buttonDeletePosts">
                 Delete all posts{" "}
               </button>
             </div>
-            <div>
+            <div className="buttons">
               <input
                 type="text"
-                className="edit"
+                className="comments"
                 onChange={this.editPostOnChange}
+                placeholder="Edit your post..."
               />
-            </div>
 
-            <div>
-              <button onClick={this.editPost} className="buttonSignUp">
+              {/* <div> */}
+              <button onClick={this.editPost} className="buttonDeletePosts">
                 Edit your post{" "}
               </button>
+              {/* </div> */}
             </div>
           </div>
         </div>
       );
       return (
         <div className="entirePost">
-          <div style={{ border: "3px solid black", margin: "10px" }}>
+          <div className="border">
             <div className="description"></div>
             {this.isThereProfilePic() ? (
               <Link to={"/users/" + this.state.userProfile.username}>
@@ -151,7 +152,9 @@ class UnconnectedPost extends Component {
                 <div className="posts">
                   <div className="by">
                     <div className="byName">
-                      <div>Posted by: {this.props.post.username}</div>
+                      <div className="names">
+                        Posted by: {this.props.post.username}
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -42,13 +42,15 @@ class UnconnectedSearch extends Component {
                 type="text"
                 name="query"
                 value={this.state.query}
-                className="search-input"
+                className="information"
                 placeholder="Search for friends..."
                 onChange={this.handleOnInputChange}
               />
+              <div></div>
               <button className="buttonSearch" onClick={this.handleSubmit}>
                 SEARCH
               </button>
+              <div></div>
               <button className="buttonDelete" onClick={this.handleDelete}>
                 DELETE
               </button>
@@ -60,9 +62,9 @@ class UnconnectedSearch extends Component {
               console.log("user", user);
               return (
                 <div>
-                  <div>
+                  <div className="flex-center">
                     <Link to={`/users/${user.username}`}>
-                      {user.username}{" "}
+                      <div> {user.username} </div>
                       <img
                         src={user.profilePic}
                         className="profilePicture"

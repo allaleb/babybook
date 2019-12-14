@@ -45,9 +45,12 @@ class UnconnectedHeader extends Component {
           <Link to="/friends" className="link">
             FRIENDS
           </Link>
-          <Link to="/milestones" className="link">
-            MILESTONES
+          <Link to="/firsts" className="link">
+            FIRSTS
           </Link>
+          {/* <Link to="/milestones" className="link">
+            MILESTONES
+          </Link> */}
           <Link to="/" className="link" onClick={this.logOutHandler}>
             LOG OUT
           </Link>

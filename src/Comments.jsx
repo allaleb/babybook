@@ -33,19 +33,19 @@ class UnconnectedComments extends Component {
     return (
       <div>
         <div>
-          <FontAwesomeIcon icon={faComment} color="white" size="2x" />
           {this.props.post.comments.map(comment => {
             return <div className="comment">{comment}</div>;
           })}
         </div>
         <form className="forms" onSubmit={this.submitHandler}>
+          <FontAwesomeIcon icon={faComment} color="white" size="2x" />
           <input
-            className="test"
+            className="comments"
             type="text"
             onChange={this.commenthangeHandler}
-            placeholder="Enter your comments here"
+            placeholder="Enter your comments here..."
           ></input>
-          <input type="submit" value="Submit"></input>
+          <input type="submit" className="submit" value="Submit"></input>
         </form>
       </div>
     );

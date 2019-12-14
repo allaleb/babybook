@@ -96,21 +96,23 @@ app.post("/signup", upload.none(), (req, res) => {
 
 app.get("/checkForUser", (req, res) => {
   let sid = req.cookies.sid;
-  dbo.collection("cookies").findOne({ sessionId: sid }, (err, doc) => {
-    if (doc) {
-      dbo
-        .collection("users")
-        .findOne({ username: doc.username }, (err, user) => {
-          res.send(
-            JSON.stringify({
-              success: true,
-              username: user.username,
-              friends: user.friends
-            })
-          );
-        });
-    } else res.send(JSON.stringify({ success: false }));
-  });
+  dbo
+    .collection("cookies")
+    .findOne({ sessionId: sid }, (err, doc) => {
+      if (doc) {
+        dbo
+          .collection("users")
+          .findOne({ username: doc.username }, (err, user) => {
+            res.send(
+              JSON.stringify({
+                success: true,
+                username: user.username,
+                friends: user.friends
+              })
+            );
+          });
+      } else res.send(JSON.stringify({ success: false }));
+    });
 });
 
 app.get("/allposts", (req, res) => {

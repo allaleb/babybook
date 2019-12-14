@@ -75,19 +75,25 @@ class UnconnectedMilestones extends Component {
     return (
       <div className="miles">
         {this.props.moments.map(moment => (
-          <div>
-            {moment.firsts}
-            <div></div>
-            {moment.date}
-            <div></div>
-            <img src={moment.frontendPath} height="300px" />
-            <button
-              onClick={() => {
-                this.deleteMoment(moment);
-              }}
-            >
-              Delete this memory{" "}
-            </button>
+          <div className="milestone-container">
+            <div className="firstt">{moment.firsts}</div>
+            <div className="firstt">{moment.date}</div>
+            <img
+              src={moment.frontendPath}
+              className="profilePicture"
+              height="400px"
+            />
+
+            <div>
+              <button
+                className="memory"
+                onClick={() => {
+                  this.deleteMoment(moment);
+                }}
+              >
+                <div>Delete this memory </div>
+              </button>
+            </div>
           </div>
         ))}
       </div>

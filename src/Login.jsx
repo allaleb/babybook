@@ -69,7 +69,7 @@ class UnconnectedLogin extends Component {
             <div className="box1">
               <div className="cover">
                 <div className="formbox">
-                  <h1 className="signup">Login </h1>
+                  <h1 className="signup">Log in </h1>
                   <form className="login-form" onSubmit={this.handleSubmit}>
                     {/* <div>Username</div> */}
                     <div>
