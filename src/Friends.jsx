@@ -8,7 +8,9 @@ import { Link, Redirect } from "react-router-dom";
 class UnconnectedFriends extends Component {
   state = {
     friendRequests: [],
-    friends: []
+    friends: [],
+    user: {},
+    filteredUser: []
   };
 
   componentDidMount = async () => {
@@ -106,6 +108,13 @@ class UnconnectedFriends extends Component {
           {this.state.friendRequests.map(friend => (
             <div className="tests">
               <div className="tests1">{friend.from}</div>
+
+              <img
+                src={friend.profilePic}
+                className="profilePicture"
+                height="80px"
+              />
+
               <button
                 className="accept"
                 onClick={() => this.acceptRequest(friend.from, friend.to)}
@@ -137,6 +146,7 @@ class UnconnectedFriends extends Component {
             ))}
           </div>
         </div>
+        <Requests user={this.props.username} />
       </div>
     );
   }
@@ -146,7 +156,9 @@ const mapStateToProps = state => {
   return {
     username: state.username,
     userId: state.userId,
-    friends: state.friends
+    friends: state.friends,
+    users: state.users,
+    filteredUser: state.filteredUser
   };
 };
 

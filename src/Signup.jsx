@@ -44,49 +44,58 @@ class UnconnectedSignup extends Component {
   render = () => {
     if (this.state.signedUp === false) {
       return (
-        <div>
-          <div className>
+        <div className="hi">
+          <div>
             <div>
-              <Link className="link-store" to="/">
+              {/* <Link className="link-store" to="/">
                 Homepage
-              </Link>
+              </Link> */}
             </div>
           </div>
-          <div className="box">
-            <div className="formbox">
-              <h1 className="signup bolder">Signup</h1>
-              <div className="free bolder">It's free and always will be</div>
-              <form className="signup-form" onSubmit={this.submitHandler}>
-                <input
-                  type="text"
-                  className="inputbody in1"
-                  value={this.state.username}
-                  placeholder="Username"
-                  onChange={this.usernameHandler}
-                ></input>
-                <input
-                  type="password"
-                  className="inputbody in2"
-                  value={this.state.password}
-                  placeholder="Password"
-                  onChange={this.passwordHandler}
-                ></input>
-                <input
-                  type="submit"
-                  className="buttonSignUp"
-                  value="Sign up"
-                ></input>{" "}
+          <div className="container">
+            <div className="box">
+              <div className="cover">
+                <div className="formbox">
+                  <h1 className="signup">Sign up</h1>
+                  <div className="free bolder">
+                    It's free and always will be
+                  </div>
+                  <form className="signup-form" onSubmit={this.submitHandler}>
+                    <input
+                      type="text"
+                      className="inputbody in1"
+                      value={this.state.username}
+                      placeholder="Username"
+                      onChange={this.usernameHandler}
+                    ></input>
+                    <input
+                      type="password"
+                      className="inputbody in2"
+                      value={this.state.password}
+                      placeholder="Password"
+                      onChange={this.passwordHandler}
+                    ></input>
+                    <input
+                      type="submit"
+                      className="buttonSignUp1"
+                      value="Sign up"
+                    ></input>{" "}
+                  </form>
+                </div>
+              </div>
+              <form className="form">
+                <div className="link-logins">
+                  <Link className="link1" to="/login">
+                    <div className="account2">
+                      <div className="c">Already have an account? </div>
+
+                      <div className="d">Click here to log in.</div>
+                    </div>
+                  </Link>
+                </div>
               </form>
             </div>
           </div>
-          <form className="form">
-            <div className="link-login">
-              <Link className="link" to="/login">
-                <div className="account">Already have an account? </div>
-                <div className="account">Click here to log in.</div>
-              </Link>
-            </div>
-          </form>
         </div>
       );
     }

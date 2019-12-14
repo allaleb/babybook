@@ -59,6 +59,26 @@ body {
   padding: 8px;
 }
 
+.link-logins {
+  text-decoration: none;
+  color: black;
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
+  margin: 8px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.link1 {
+  text-decoration: none;
+  color: black;
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
+  margin: 8px;
+  padding: 8px;
+}
+
 .navbar-home {
   display: flex;
   justify-content: flex-end;
@@ -150,6 +170,19 @@ link {
   width: 50%;
 }
 
+.buttonSignUp1 {
+  margin-top: 10px;
+  background: #9dd8c8;
+  border-radius: 30px;
+  color: black;
+  padding: 20px;
+  border: none;
+  font-family: "Petit Formal Script", cursive;
+  font-weight: bolder;
+  width: 50%;
+  margin-left: 95px;
+}
+
 .signUpButton {
   display: flex;
   justify-content: center;
@@ -188,6 +221,27 @@ link {
   margin-left: 80px;
 }
 
+account3 {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-left: 80px;
+}
+
+c {
+  /* display: flex; */
+  justify-content: center;
+  align-content: center;
+  margin-left: 80px;
+}
+
+d {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-left: 80px;
+}
+
 /* .profilePic {
   float: left;
   width: calc(33.333% - 1rem);
@@ -196,6 +250,11 @@ link {
   align-items: center;
   margin-right: 3rem;
 } */
+
+.profilePicture11 {
+  border-radius: 30%;
+  margin-left: 10px;
+}
 
 .cover {
   display: flex;
@@ -207,7 +266,7 @@ link {
 .signup {
   display: flex;
   justify-content: center;
-  font-size: 50px;
+  font-size: 51px;
   font-family: "Alatsi", sans-serif;
   margin-top: 50px;
 }
@@ -538,7 +597,7 @@ link {
 }
 
 .addFriend {
-  margin-top: 10px;
+  margin-top: 29px;
   background: #9dd8c8;
   border-radius: 30px;
   color: black;
@@ -546,11 +605,11 @@ link {
   border: none;
   font-family: "Petit Formal Script", cursive;
   font-weight: bolder;
-  margin-left: 4px;
+  margin-left: 89px;
 }
 
 .userName {
-  margin-left: 20px;
+  margin-left: 1px;
 
   border-radius: 30px;
   color: black;
@@ -621,7 +680,7 @@ link {
   background-position: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: inset 0 0 0 1000px rgba(194, 182, 154, 0.25);
+  box-shadow: inset 0 0 0 1000px rgba(194, 182, 154, 0.55);
   display: flex;
   justify-content: flex-end;
 }

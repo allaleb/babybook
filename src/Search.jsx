@@ -64,10 +64,10 @@ class UnconnectedSearch extends Component {
                 <div>
                   <div className="flex-center">
                     <Link to={`/users/${user.username}`}>
-                      <div> {user.username} </div>
+                      <div className="userName"> {user.username} </div>
                       <img
                         src={user.profilePic}
-                        className="profilePicture"
+                        className="profilePicture11"
                         height="100px"
                       />
                     </Link>
