@@ -5,3 +5,5 @@ I created a Baby Book. A person visiting my website will be able to do the follo
 *edit and delete them; 
 *search for friends; 
 *accept or deny friends' requests.
+
+Here is what it looks like: https://www.youtube.com/watch?v=q8sJ5zzTqWs&t=29s
