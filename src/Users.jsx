@@ -8,7 +8,7 @@ class UnconnectedUsers extends Component {
   };
 
   componentDidMount = async () => {
-    ///this.props.usrrname is hte username
+   
     let data = new FormData();
     data.append("username", this.props.username);
     let response = await fetch("/users", { method: "POST", body: data });
@@ -30,7 +30,7 @@ class UnconnectedUsers extends Component {
           height="300px"
         />
         <div className="me">About me:</div>
-        {/* <div className="groupCont"> */}
+       
         <div className="group">
           <div className="interests">
             Interests: {this.state.user.interests}
@@ -39,9 +39,9 @@ class UnconnectedUsers extends Component {
           <div className="interests">I am from {this.state.user.location}</div>
 
           <div className="interests">{this.state.user.bio}</div>
-          {/* {/* </div> */}
+         
         </div>{" "}
-        {/* */}
+        
         <Requests user={this.props.username} />
       </div>
     );

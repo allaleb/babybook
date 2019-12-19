@@ -17,19 +17,6 @@ class UnconnectedFriends extends Component {
     this.reloadFriendReqs();
   };
 
-  // reloadFriendReqs = async () => {
-  //   let data = new FormData();
-  //   console.log("username", this.props.username);
-  //   data.append("username", this.props.username);
-  //   let response = await fetch("/displayfriendsReq", {
-  //     method: "POST",
-  //     body: data
-  //   });
-  //   let body = await response.text();
-  //   body = JSON.parse(body);
-  //   console.log("friend request", body);
-  //   this.setState({ friendRequests: body });
-  // };
   acceptRequest = async (from, to) => {
     let data = new FormData();
     console.log("from", from);
@@ -47,15 +34,12 @@ class UnconnectedFriends extends Component {
       return;
     }
     alert("friend was NOT added");
-    //we want to fetch the endpoint which will accept the request.
-    //this will take (from/to) and find the to in the users collection and add the from into their list of friends
-    //then we will call delete requests to clear the request
+    
   };
 
   deleteRequest = async (from, to) => {
     console.log(this.props);
     let data = new FormData();
-    // console.log("from and to", from, to);
     data.append("from", from);
     data.append("to", to);
     let res = await fetch("/deleteRequest", { method: "POST", body: data });
@@ -63,7 +47,7 @@ class UnconnectedFriends extends Component {
     body = JSON.parse(body);
     console.log(body);
     if (body.success) {
-      alert("success");
+      // alert("success");
       this.reloadFriendReqs();
       return;
     }
@@ -97,8 +81,6 @@ class UnconnectedFriends extends Component {
   };
 
   render() {
-    // add a profile pic from a person who sent a request in my div.
-    // console.log("this.state.friends", this.state.friends);
     return (
       <div className="friends-container">
         <Search />

@@ -56,11 +56,10 @@ app.post("/logout", upload.none(), (req, res) => {
   console.log("I am in the logout body", req.body);
   let sessionId = req.body.sessionId;
   res.clearCookie("sid");
-  // we also need to make sure that the cookie is removed form the collection on mongodb
+
   dbo.collection("cookies").deleteOne({ sessionId: req.cookies.sid });
 
-  // let sessionId = req.cookies.sid;
-  // delete sessions[sessionId];
+  
   res.clearCookie("sid");
   res.send(JSON.stringify({ success: true }));
 });
@@ -117,7 +116,6 @@ app.get("/checkForUser", (req, res) => {
 
 app.get("/allposts", (req, res) => {
   let cookie = req.cookies.sid;
-  ///we make a request to the cookies collection and if the cookie does exist we res.send a error object and we leave the function.
   dbo
     .collection("posts")
     .find({})
@@ -193,12 +191,10 @@ app.post("/deleteOne", upload.none(), (req, res) => {
 });
 
 app.post("/deleteMoment", upload.none(), (req, res) => {
-  //we need to accept an array of moments(it might be a string; HINT: PARSE). we will also receeive the id for the moments
-  //we need to find the matching momoents object in the milestones' collection.
-  //we will need to update this object with our new filtered moments.
+  
 
   let newMoments = JSON.parse(req.body.newMoments);
-  // let postId = req.body.id;
+  
 
   let id = req.body.id;
 
@@ -264,21 +260,7 @@ app.post("/users", upload.none(), (req, res) => {
     });
 });
 
-// app.get("users/:username", upload.none(), (req, res) => {
-//   let username = req.body.username;
-//   dbo
-//     .collection("users")
-//     .find({ username: username })
-//     .toArray((error, user) => {
-//       if (error) {
-//         console.log("error", error);
-//         res.send(JSON.stringify({ success: false }));
-//         return;
-//       }
-//       res.send(JSON.stringify(user));
-//       return;
-//     });
-// });
+
 
 app.post("/firsts", upload.single("file"), (req, res) => {
   let username = req.body.username;
@@ -342,14 +324,7 @@ app.post("/likes", upload.none(), (req, res) => {
   console.log("POST to /likes:", req.body);
   let postId = req.body.postId;
   let username = req.body.username;
-  // dbo.collection("posts").findOne({ _id: ObjectID(postId) }, (error, post) => {
-  //   if (error || post === null) {
-  //     console.log("ERROR or null post");
-  //     return res.json({ success: false });
-  // }
-  // console.log("POST:", post);
-  // let likes = post.likes || [];
-  // likes.push(username);
+  
   dbo
     .collection("posts")
     .updateOne(
@@ -468,13 +443,7 @@ app.post("/acceptRequest", upload.none(), (req, res) => {
               .updateOne({ username: from }, { $push: { friends: to } });
             res.send(JSON.stringify({ success: true }));
 
-            // dbo.collection("requests").deleteOne({ from: from, to: to }, (err, user) => {
-            //   if (err) {
-            //     res.json({ success: false });
-            //     return;
-            //   }
-            //   res.send(JSON.stringify({ success: true }));
-            // });
+            
             return;
           }
         );
@@ -482,18 +451,16 @@ app.post("/acceptRequest", upload.none(), (req, res) => {
       res.send(JSON.stringify({ success: false }));
       return;
     }
-    // } else res.send(JSON.stringify({ success: false }));
+  
   });
 });
 
-//we want to delete the request, same process as the deny request.
-//we want to make a fetch request to the users objects in the user collection to add the from as a friend
 
 app.post("/deleteRequest", upload.none(), (req, res) => {
   let to = req.body.to;
   let from = req.body.from;
   console.log(to, from);
-  //we want to delete request where the to and the from match thouse of req.body.Hint: both of these must be in the query
+  
   dbo.collection("requests").deleteOne({ from: from, to: to }, (err, user) => {
     if (err) {
       res.json({ success: false });

@@ -69,7 +69,7 @@ class UnconnectedFirsts extends Component {
         let res = await fetch(
           "/milestones",
 
-          // { username: username },
+    
 
           { method: "POST", body: data }
         );
@@ -110,18 +110,18 @@ class UnconnectedFirsts extends Component {
                   <input
                     type="file"
                     id="foobar"
-                    // className="newPostFile"
+                   
                     onChange={this.fileChangeHandler}
                   />
                 </div>
               </div>
 
-              {/* <input
+              <input
                 type="file"
                 onChange={this.fileChangeHandler}
-                className="submitFirsts"
+                className="submitFirstss"
               />
-              <div></div> */}
+              <div></div>
               <input
                 type="submit"
                 value="Submit"

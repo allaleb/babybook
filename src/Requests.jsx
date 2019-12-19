@@ -4,7 +4,6 @@ import Users from "./Users.jsx";
 
 class UnconnectedRequests extends Component {
   addFriend = async () => {
-    // include both the ids of the profile we are visiting and the person who is making the requests.
 
     let data = new FormData();
     console.log("userid", this.props.user);
@@ -16,16 +15,7 @@ class UnconnectedRequests extends Component {
     else alert("Your friend request was sent!");
   };
 
-  ///request component should be inside of the user's profile, and will
-  ///it will take a prop of the user whose profile we are visiting
-  ///this prop will be the user
-  ///users and requests
-
-  //after the userProfile prop is passed to this component from the users component we will use the id inside of the profile, as well as
-  ///the user id of the current user to make a fetch request for a friend request
-
-  // ||
-  // this.props.friends.includes(this.state.userProfile.friends)
+  
 
   render() {
     if (this.props.friends.includes(this.props.user)) {

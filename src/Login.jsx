@@ -12,11 +12,7 @@ class UnconnectedLogin extends Component {
     };
   }
 
-  // this.props.dispatch({
-  //   type: "set-posts",
-  //   messages: parsed
-  // });
-
+ 
   handleUsernameChange = event => {
     console.log("new username", event.target.value);
     this.setState({ username: event.target.value });
@@ -60,9 +56,7 @@ class UnconnectedLogin extends Component {
         <div>
           <div className>
             <div>
-              {/* <Link className="link-store" to="/">
-                HOME
-              </Link> */}
+              
             </div>
           </div>
           <div className="container">
@@ -71,7 +65,7 @@ class UnconnectedLogin extends Component {
                 <div className="formbox">
                   <h1 className="signup">Log in </h1>
                   <form className="login-form" onSubmit={this.handleSubmit}>
-                    {/* <div>Username</div> */}
+                    
                     <div>
                       <input
                         type="text"
@@ -80,7 +74,7 @@ class UnconnectedLogin extends Component {
                         onChange={this.handleUsernameChange}
                       />
                     </div>
-                    {/* <div>Password</div> */}
+                   
 
                     <div>
                       <input
@@ -111,9 +105,7 @@ class UnconnectedLogin extends Component {
           </Link>
 
           <div className="loginImg"> </div>
-          {/* <Link to="/signup" className="account">
-            Not a member? Click here to create an account
-          </Link> */}
+          
         </div>
       );
     }

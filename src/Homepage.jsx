@@ -30,10 +30,7 @@ class UnconnectedHomepage extends Component {
         posts: parsed
       });
     };
-    // let filteredPosts = posts.filter(post => {
-    //   return posts.username === this.props.post._id;
-    // });
-    // this.setState({ filteredPosts: filteredPosts });
+   
     filteredPosts();
     setInterval(filteredPosts, 500);
   };
@@ -77,7 +74,7 @@ class UnconnectedHomepage extends Component {
       return <Redirect to="/posts" />;
     } else {
       return (
-        // <div className="hey">
+      
         <div className="container">
           <div className="box">
             <div className="cover">
@@ -119,14 +116,12 @@ class UnconnectedHomepage extends Component {
                   </div>
                 </form>
               </div>
-              {/* <Signup /> */}
-              {/* <div className="cover"> */}
+            
               <div className="homepageImg"> </div>
-              {/* <img src="/socks.jpg" height="500px" className="homepageImg" /> */}
-              {/* </div> */}
+             
             </div>
           </div>
-          {/* //{" "} */}
+          
         </div>
       );
     }
@@ -138,7 +133,7 @@ let mapStateToProps = state => {
     loggedIn: state.loggedIn,
     posts: state.posts
 
-    // add posts
+   
   };
 };
 

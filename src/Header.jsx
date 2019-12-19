@@ -12,9 +12,7 @@ class UnconnectedHeader extends Component {
       credentials: "include"
     });
     let responseBody = await response.text();
-    // console.log("responseBody from logour", responseBody);
-    // let body = JSON.parse(responseBody);
-    // console.log("parsed body", body);
+    
     this.props.dispatch({ type: "log-out" });
   };
 
@@ -25,9 +23,7 @@ class UnconnectedHeader extends Component {
           <div className="nav">
             <div className="baby">Welcome to Baby Book!</div>
             <div></div>
-            {/* <Link to="/profile" className="baby">
-              Welcome to Baby Book!
-            </Link> */}
+            
             {"   "}
             <Link to="/login" className="link">
               LOG IN
@@ -48,9 +44,7 @@ class UnconnectedHeader extends Component {
           <Link to="/firsts" className="link">
             FIRSTS
           </Link>
-          {/* <Link to="/milestones" className="link">
-            MILESTONES
-          </Link> */}
+          
           <Link to="/" className="link" onClick={this.logOutHandler}>
             LOG OUT
           </Link>

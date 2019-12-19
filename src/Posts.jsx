@@ -26,17 +26,9 @@ class UnconnectedPosts extends Component {
     if (this.props.loggedIn) {
       return (
         <div>
-          {/* <Link className="link-store" to="/profile">
-            Profile
-          </Link> */}
-          {/* <Link className="link-store" to="/">
-            Home
-            
-          </Link> */}
+         
           <div className="postsPage">
-            {/* <Link to="/firsts" className="link">
-              <div className="time">A first time for everything...</div>
-            </Link> */}
+          
             <div className="boxx">
               <img
                 src={this.props.profilePic}
@@ -45,14 +37,10 @@ class UnconnectedPosts extends Component {
               />
               <div className="space"></div>
               <NewPost />
-              {/* <Link to="/firsts" className="link">
-                <div className="time">A first time for everything...</div>
-              </Link> */}
+              
             </div>
 
-            {/* <h1>A first time for everything</h1> */}
-
-            {/* <NewPost /> */}
+           
             {this.props.posts.map(post => {
               return <Post key={post._id} post={post} />;
             })}

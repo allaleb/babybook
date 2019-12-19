@@ -49,12 +49,12 @@ class UnconnectedProfile extends Component {
     data.append("location", this.state.location);
     data.append("interests", this.state.interests);
     data.append("bio", this.state.bio);
-    // data.append("useraname", this.props.username);
+    
     data.append("img", this.state.file);
     let response = await fetch("/profile", { method: "POST", body: data });
-    // response is now a response object
+    
     let body = await response.text();
-    // body is now the response body
+    
     console.log("body", body);
     let profileUpdate = JSON.parse(body);
     // profileUpdate now contains whatever json was send back by the server in res.send
@@ -109,21 +109,19 @@ class UnconnectedProfile extends Component {
                 <input
                   type="file"
                   id="foobar"
-                  // className="newPostFile"
+                 
                   onChange={this.fileChangeHandler}
                 />
               </div>
             </div>
 
-            {/* <div>
-              <input type="file" onChange={this.fileChangeHandler} />
-            </div> */}
+           
             <input
               type="submit"
               value="Submit"
               className="submitFirstsProfile"
             ></input>
-            {/* <input type="submit" value="Submit"></input> */}
+            
           </form>
         </div>
         //{" "}

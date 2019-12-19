@@ -47,9 +47,7 @@ class UnconnectedSignup extends Component {
         <div className="hi">
           <div>
             <div>
-              {/* <Link className="link-store" to="/">
-                Homepage
-              </Link> */}
+           
             </div>
           </div>
           <div className="container">

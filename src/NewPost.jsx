@@ -61,7 +61,6 @@ class UnconnectedNewPost extends Component {
                 <input
                   type="file"
                   id="foobar"
-                  // className="newPostFile"
                   onChange={this.fileChangeHandler}
                 />
               </div>

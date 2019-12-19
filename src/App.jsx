@@ -88,7 +88,7 @@ class UnconnectedApp extends Component {
             <Profile username={routerData.match.params.username} />
           )}
         />
-        {/* </div> */}
+       
       </BrowserRouter>
     );
   };

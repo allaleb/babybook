@@ -39,7 +39,7 @@ class UnconnectedPost extends Component {
   deleteOne = async () => {
     let data = new FormData();
     data.append("id", this.props.post._id);
-    // data.append("description", this.props.state.description);
+   
     fetch("/deleteOne", { method: "POST", body: data });
   };
 
@@ -65,7 +65,7 @@ class UnconnectedPost extends Component {
     return false;
   };
 
-  // addFriend = () => {};
+  
 
   render = () => {
     console.log("this.state", this.state);
@@ -79,7 +79,7 @@ class UnconnectedPost extends Component {
       this.state.userProfile.username === this.props.username;
     if (showPost) {
       let menu = (
-        // (<button onClick={this.expand()}>+</button>)
+       
         <div>
           <Comments post={this.props.post} />
           <button onClick={this.expand}>
@@ -163,28 +163,7 @@ class UnconnectedPost extends Component {
 
               {menu}
             </div>
-            {/* <div>
-              <button onClick={this.deleteOne} className="deletePost">
-                Delete this post{" "}
-              </button>
-            </div>
-            <div>
-              <button onClick={this.delete} className="deletePosts">
-                Delete all posts{" "}
-              </button>
-            </div>
-            <div>
-              <input
-                type="text"
-                className="edit"
-                onChange={this.editPostOnChange}
-              />
-            </div>
-            <div>
-              <button onClick={this.editPost} className="editPost">
-                Edit your post{" "}
-              </button>
-            </div> */}
+           
             <Link to={"/posts"}></Link>
           </div>
         </div>
@@ -213,7 +192,7 @@ class UnconnectedPost extends Component {
             )}{" "}
           </Link>
           <Requests user={this.state.userProfile.username} />{" "}
-          {/* <button onClick={this.addFriend}>Add Friend</button>{" "} */}
+         
         </div>
       );
   };
